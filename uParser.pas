@@ -19,7 +19,7 @@ implementation
 			if (s[i] = '|') then
 			begin
 				returnArray[indexArray] := copy(s, posAkhir, i-posAkhir-1);
-				posAkhir := i+1;
+				posAkhir := i+2;
 				indexArray := indexArray +1;
 			end;
 		end;
