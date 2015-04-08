@@ -1,13 +1,13 @@
-unit uParser;
+unit uParser; //Service
 
 interface
 	type
 		arString = array[1..1000] of string;
 		Parser = Object
-			function parseStringToArray(s:ansistring):arString;
+			function stringToArray(s:ansistring):arString;
 		end;
 implementation
-	function Parser.parseStringToArray(s:ansistring):arString;
+	function Parser.stringToArray(s:ansistring):arString;
 	var
 		i, posAkhir, indexArray:longint;
 		returnArray : arString;
@@ -24,6 +24,6 @@ implementation
 			end;
 		end;
 		copy(returnArray[indexArray], posAkhir, length(s)-posAkhir);
-		parseStringToArray := returnArray;
+		stringToArray := returnArray;
 	end;
 end.
