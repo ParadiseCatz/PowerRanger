@@ -5,7 +5,7 @@ interface
 	
 	type
 		CourierPool = Object
-			contents : array[1..1000] of Courier;
+			contents : array[1..100] of Courier;
 			size : longint;
 
 			constructor cons(

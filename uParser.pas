@@ -4,7 +4,7 @@ interface
 	uses uDate;
 
 	type
-		arString = array[1..1000] of string;
+		arString = array[1..100] of string;
 		Parser = Object
 			function stringToArray(s:ansistring):arString;
 			function stringToDate(s:ansistring):Date;

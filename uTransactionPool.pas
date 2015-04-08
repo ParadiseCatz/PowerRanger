@@ -5,7 +5,7 @@ interface
 	
 	type
 		TransactionPool = Object
-			contents : array[1..1000] of Transaction;
+			contents : array[1..100] of Transaction;
 			size : longint;
 
 			constructor cons(

@@ -5,7 +5,7 @@ interface
 	
 	type
 		Warehouse = Object
-			contents : array[1..1000] of WarehouseItem;
+			contents : array[1..100] of WarehouseItem;
 			size : longint;
 
 			constructor cons(

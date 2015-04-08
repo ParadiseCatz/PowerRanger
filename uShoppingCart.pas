@@ -5,7 +5,7 @@ interface
 	
 	type
 		ShoppingCart = Object
-			contents : array[1..1000] of ShoppingCartItem;
+			contents : array[1..100] of ShoppingCartItem;
 			size : longint;
 
 			constructor cons(
