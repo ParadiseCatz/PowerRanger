@@ -1,13 +1,14 @@
 unit uLoader;
 
 interface
-	uses uParser, uWarehouse, uShoppingCart, uCourierPool, uTransactionPool, uClothes;
+	uses uParser, uWarehouse, uShoppingCart, uCourierPool, uTransactionPool, uClothes, uShoppingCartItem, uCourier, uDate;
 
 	type
 		Loader = Object
 			function loadWarehouse(filename:string):Warehouse;
 			function loadCourier(filename:string):CourierPool;
 			function loadShoppingCart(filename:string):ShoppingCart;
+			function loadTransaction(filename:string):TransactionPool;
 		end;
 implementation
 var
@@ -95,5 +96,45 @@ var
 		end;
 		returnObject.size := size;
 		loadShoppingCart := returnObject;
+	end;
+
+	function Loader.loadTransaction(filename:string):TransactionPool;
+	var 
+		returnObject : TransactionPool;
+		clothesInput : Clothes;
+		shoppingCartItemInput : ShoppingCartItem;
+		shoppingCartInput : ShoppingCart;
+		courierInput : Courier;
+		dateInput : Date;
+		r : array[0..50] of real;
+		a : array[0..50] of longint;
+	begin
+		assign(selectedDatabase,filename);
+		reset(selectedDatabase);
+		size := 0;
+		while not eof(selectedDatabase) do
+		begin
+			readln(selectedDatabase, line);
+			t := mainParser.stringToArray(line);
+			size := size + 1;
+			val(t[3], r[1]);
+			val(t[5], r[2]);
+			val(t[6], a[1]);
+			val(t[7], a[2]);
+			val(t[8], a[3]);
+			val(t[9], a[4]);
+			clothesInput.cons(t[1], '', '', t[2], r[1], t[4], r[2]);
+			shoppingCartItemInput.cons(clothesInput, a[1], a[2], a[3], a[4]);
+			shoppingCartInput.contents[1] := shoppingCartItemInput;
+			shoppingCartInput.size := 1;
+			val(t[13], r[3]);
+			val(t[14], r[4]);
+			courierInput.cons(t[10], t[11], t[12], r[3], r[4]);
+			dateInput := mainParser.stringToDate(t[15]);
+			returnObject.contents[size].cons(shoppingCartInput, courierInput, dateInput);
+
+		end;
+		returnObject.size := size;
+		loadTransaction := returnObject;
 	end;
 end.
