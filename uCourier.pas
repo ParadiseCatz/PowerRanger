@@ -7,14 +7,14 @@ interface
 			name : String;
 			type_of_service : String;
 			destination_city : String;
-			price_per_kg : String;
+			price_per_kg : real;
 			delivery_time : real;
 			
 			constructor cons(
 				nm : String;
 				tos : String;
 				dc : String;
-				ppk : String;
+				ppk : real;
 				dt : real
 			);
 			procedure tes;
@@ -25,7 +25,7 @@ implementation
 		nm : String;
 		tos : String;
 		dc : String;
-		ppk : String;
+		ppk : real;
 		dt : real
 	);
 	begin
