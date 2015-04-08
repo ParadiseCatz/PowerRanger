@@ -26,7 +26,7 @@ implementation
 				indexArray := indexArray +1;
 			end;
 		end;
-		copy(returnArray[indexArray], posAkhir, length(s)-posAkhir);
+		returnArray[indexArray] := copy(s, posAkhir, length(s)-posAkhir+1);
 		stringToArray := returnArray;
 	end;
 	function Parser.stringToDate(s:ansistring):Date;
