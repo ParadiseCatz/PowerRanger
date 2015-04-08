@@ -46,7 +46,7 @@ implementation
 				indexArray := indexArray +1;
 			end;
 		end;
-		val(copy(s, posAkhir, i-posAkhir), returnArray[indexArray]);
+		val(copy(s, posAkhir, length(s)-posAkhir+1), returnArray[indexArray]);
 		returnDate.day := returnArray[1];
 		returnDate.month := returnArray[2];
 		returnDate.year := returnArray[3];
