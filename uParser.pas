@@ -12,13 +12,13 @@ implementation
 		i, posAkhir, indexArray:longint;
 		returnArray : arString;
 	begin
-		indexArray := 0;
+		indexArray := 1;
 		posAkhir := 1;
 		for i:=1 to length(s) do
 		begin
 			if (s[i] = '|') then
 			begin
-				copy(returnArray[indexArray], posAkhir, i-posAkhir-1);
+				returnArray[indexArray] := copy(s, posAkhir, i-posAkhir-1);
 				posAkhir := i+1;
 				indexArray := indexArray +1;
 			end;
