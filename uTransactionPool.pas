@@ -4,25 +4,27 @@ interface
 	uses uTransaction;
 	
 	type
-		TransactionPool = Object
-			contents : array[1..30] of Transaction;
+		TransactionPool = record
+			contents : array[1..1000] of Transaction;
 			size : longint;
-
-			constructor cons(
-				c : array of Transaction;
-				sz : longint
-			);
-			procedure tes;
 		end;
+		
+		function cons(
+			c : array of Transaction;
+			sz : longint
+		):TransactionPool;
+
+		procedure tes;
+		
 
 implementation
-	constructor TransactionPool.cons(
+	function cons(
 		c : array of Transaction;
 		sz : longint
-	);
+	):TransactionPool;
 	begin
-		contents := c;
-		size := sz;
+		cons.contents := c;
+		cons.size := sz;
 	end;
 
 	procedure TransactionPool.tes;
