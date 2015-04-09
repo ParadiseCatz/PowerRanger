@@ -1,32 +1,28 @@
 unit uShoppingCart;
 
 interface
-	uses uShoppingCartItem;
+	uses uShoppingCartItem,uConfig;
 	
 	type
-		ShoppingCart = Object
-			contents : array[1..30] of ShoppingCartItem;
+		ShoppingCart = record
+			contents : array[1..ARRAY_LIMIT] of ShoppingCartItem;
 			size : longint;
-
-			constructor cons(
-				c : array of ShoppingCartItem;
-				sz : longint
-			);
-			procedure tes;
 		end;
 
-implementation
-	constructor ShoppingCart.cons(
+	function shoppingCartCons(
 		c : array of ShoppingCartItem;
 		sz : longint
-	);
+	):ShoppingCart;
+
+
+implementation
+	function shoppingCartCons(
+		c : array of ShoppingCartItem;
+		sz : longint
+	):ShoppingCart;
 	begin
-		contents := c;
-		size := sz;
+		shoppingCartCons.contents := c;
+		shoppingCartCons.size := sz;
 	end;
 
-	procedure ShoppingCart.tes;
-	begin
-	
-	end;
 end.

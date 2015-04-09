@@ -1,16 +1,16 @@
 unit uParser; //Service
 
 interface
-	uses uDate;
+	uses uDate,uConfig;
 
 	type
-		arString = array[1..30] of string;
-		Parser = Object
-			function stringToArray(s:ansistring):arString;
-			function stringToDate(s:ansistring):Date;
-		end;
+		arString = array[1..ARRAY_LIMIT] of string;
+
+	function stringToArray(s:ansistring):arString;
+	function stringToDate(s:ansistring):Date;
+
 implementation
-	function Parser.stringToArray(s:ansistring):arString;
+	function stringToArray(s:ansistring):arString;
 	var
 		i, posAkhir, indexArray:longint;
 		returnArray : arString;
@@ -29,7 +29,8 @@ implementation
 		returnArray[indexArray] := copy(s, posAkhir, length(s)-posAkhir+1);
 		stringToArray := returnArray;
 	end;
-	function Parser.stringToDate(s:ansistring):Date;
+
+	function stringToDate(s:ansistring):Date;
 	var
 		i, posAkhir, indexArray:longint;
 		returnArray : array[0..50] of integer;

@@ -3,41 +3,36 @@ unit uCourier;
 interface
 	
 	type
-		Courier = Object
+		Courier = record
 			name : String;
 			type_of_service : String;
 			destination_city : String;
 			price_per_kg : real;
 			delivery_time : real;
-			
-			constructor cons(
-				nm : String;
-				tos : String;
-				dc : String;
-				ppk : real;
-				dt : real
-			);
-			procedure tes;
 		end;
-
-implementation
-	constructor Courier.cons(
+			
+	function courierCons(
 		nm : String;
 		tos : String;
 		dc : String;
 		ppk : real;
 		dt : real
-	);
-	begin
-		name := nm;
-		type_of_service := tos;
-		destination_city := dc;
-		price_per_kg := ppk;
-		delivery_time := dt;
-	end;
+	):Courier;
 
-	procedure Courier.tes;
+
+implementation
+	function courierCons(
+		nm : String;
+		tos : String;
+		dc : String;
+		ppk : real;
+		dt : real
+	):Courier;
 	begin
-	
+		courierCons.name := nm;
+		courierCons.type_of_service := tos;
+		courierCons.destination_city := dc;
+		courierCons.price_per_kg := ppk;
+		courierCons.delivery_time := dt;
 	end;
 end.

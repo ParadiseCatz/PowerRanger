@@ -4,41 +4,37 @@ interface
 	uses uClothes;
 	
 	type
-		ShoppingCartItem = Object
+		ShoppingCartItem = record
 			clothes : Clothes;
 			s_quantity : longint;
 			m_quantity : longint;
 			l_quantity : longint;
 			xl_quantity : longint;
-
-			constructor cons(
-				c : Clothes;
-				s : integer;
-				m : integer;
-				l : integer;
-				xl : integer
-			);
-			procedure tes;
 		end;
 
-implementation
-	constructor ShoppingCartItem.cons(
+	function shoppingCartItemCons(
 		c : Clothes;
 		s : integer;
 		m : integer;
 		l : integer;
 		xl : integer
-	);
+	):ShoppingCartItem;
+
+
+implementation
+	function shoppingCartItemCons(
+		c : Clothes;
+		s : integer;
+		m : integer;
+		l : integer;
+		xl : integer
+	):ShoppingCartItem;
 	begin
-		clothes := c;
-		s_quantity := s;
-		m_quantity := m;
-		l_quantity := l;
-		xl_quantity := xl;
+		shoppingCartItemCons.clothes := c;
+		shoppingCartItemCons.s_quantity := s;
+		shoppingCartItemCons.m_quantity := m;
+		shoppingCartItemCons.l_quantity := l;
+		shoppingCartItemCons.xl_quantity := xl;
 	end;
 
-	procedure ShoppingCartItem.tes;
-	begin
-	
-	end;
 end.

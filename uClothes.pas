@@ -3,7 +3,7 @@ unit uClothes;
 interface
 	
 	type
-		Clothes = Object
+		Clothes = record
 			name : String;
 			category : String;
 			gender : String;
@@ -11,21 +11,9 @@ interface
 			weight : real;
 			material : String;
 			price_per_kg : real;
-			
-			constructor cons(
-				nm : String;
-				cat : String;
-				gen : String;
-				col : String;
-				wght : real;
-				mat : String;
-				ppk : real
-			);
-			procedure tes;
 		end;
 
-implementation
-	constructor Clothes.cons(
+	function clothesCons(
 		nm : String;
 		cat : String;
 		gen : String;
@@ -33,19 +21,26 @@ implementation
 		wght : real;
 		mat : String;
 		ppk : real
-	);
-	begin
-		name := nm;
-		category := cat;
-		gender := gen;
-		colour := col;
-		weight := wght;
-		material := mat;
-		price_per_kg := ppk;
-	end;
+	):Clothes;
+		
 
-	procedure Clothes.tes;
+implementation
+	function clothesCons(
+		nm : String;
+		cat : String;
+		gen : String;
+		col : String;
+		wght : real;
+		mat : String;
+		ppk : real
+	):Clothes;
 	begin
-	
+		clothesCons.name := nm;
+		clothesCons.category := cat;
+		clothesCons.gender := gen;
+		clothesCons.colour := col;
+		clothesCons.weight := wght;
+		clothesCons.material := mat;
+		clothesCons.price_per_kg := ppk;
 	end;
 end.

@@ -1,34 +1,28 @@
 unit uTransactionPool;
 
 interface
-	uses uTransaction;
+	uses uTransaction,uConfig;
 	
 	type
 		TransactionPool = record
-			contents : array[1..1000] of Transaction;
+			contents : array[1..ARRAY_LIMIT] of Transaction;
 			size : longint;
 		end;
 		
-		function cons(
-			c : array of Transaction;
-			sz : longint
-		):TransactionPool;
-
-		procedure tes;
+	function transactionPoolCons(
+		c : array of Transaction;
+		sz : longint
+	):TransactionPool;
 		
 
 implementation
-	function cons(
+	function transactionPoolCons(
 		c : array of Transaction;
 		sz : longint
 	):TransactionPool;
 	begin
-		cons.contents := c;
-		cons.size := sz;
+		transactionPoolCons.contents := c;
+		transactionPoolCons.size := sz;
 	end;
 
-	procedure TransactionPool.tes;
-	begin
-	
-	end;
 end.

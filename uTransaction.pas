@@ -8,30 +8,24 @@ interface
 			shopping_cart : ShoppingCart;
 			courier : Courier;
 			delivery_date : Date;
-
-			function cons(
-				sc : ShoppingCart;
-				c : Courier;
-				dt : Date
-			):Transaction;
-
-			procedure tes;
 		end;
 
+	function transactionCons(
+		sc : ShoppingCart;
+		c : Courier;
+		dt : Date
+	):Transaction;
+		
+
 implementation
-	function cons(
+	function transactionCons(
 		sc : ShoppingCart;
 		c : Courier;
 		dt : Date
 	):Transaction;
 	begin
-		cons.shopping_cart := sc;
-		cons.courier := c;
-		cons.delivery_date := dt;
-	end;
-
-	procedure Transaction.tes;
-	begin
-	
+		transactionCons.shopping_cart := sc;
+		transactionCons.courier := c;
+		transactionCons.delivery_date := dt;
 	end;
 end.

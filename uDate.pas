@@ -3,33 +3,28 @@ unit uDate;
 interface
 	
 	type
-		Date = Object
+		Date = record
 			day : integer;
 			month : integer;
 			year : integer;
-			
-			constructor cons(
-				d : integer;
-				m : integer;
-				y : integer
-			);
-			procedure tes;
 		end;
 
-implementation
-	constructor Date.cons(
+	function dateCons(
 		d : integer;
 		m : integer;
 		y : integer
-	);
+	):Date;
+
+implementation
+	function dateCons(
+		d : integer;
+		m : integer;
+		y : integer
+	):Date;
 	begin
-		day := d;
-		month := m;
-		year := y;
+		dateCons.day := d;
+		dateCons.month := m;
+		dateCons.year := y;
 	end;
 
-	procedure Date.tes;
-	begin
-	
-	end;
 end.
