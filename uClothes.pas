@@ -10,7 +10,7 @@ interface
 			colour : String;
 			weight : real;
 			material : String;
-			price_per_kg : real;
+			price : real;
 		end;
 
 	function clothesCons(
@@ -20,7 +20,7 @@ interface
 		col : String;
 		wght : real;
 		mat : String;
-		ppk : real
+		prc : real
 	):Clothes;
 		
 
@@ -32,7 +32,7 @@ implementation
 		col : String;
 		wght : real;
 		mat : String;
-		ppk : real
+		prc : real
 	):Clothes;
 	begin
 		clothesCons.name := nm;
@@ -41,6 +41,6 @@ implementation
 		clothesCons.colour := col;
 		clothesCons.weight := wght;
 		clothesCons.material := mat;
-		clothesCons.price_per_kg := ppk;
+		clothesCons.price := prc;
 	end;
 end.
