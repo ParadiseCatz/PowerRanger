@@ -37,5 +37,6 @@ end;
 begin
 	userGreeter();
 	loadAll();
+	saveAll();
 end.
 
