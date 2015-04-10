@@ -17,6 +17,7 @@ var
 	var
 		i:longint;
 	begin
+		write('Saving Warehouse...');
 		assign(selectedDatabase,filename);
 		rewrite(selectedDatabase);
 		for i:=1 to newWarehouse.size do
@@ -33,15 +34,18 @@ var
 			str(newWarehouse.contents[i].l_stock,t[9]);
 			str(newWarehouse.contents[i].xl_stock,t[10]);
 			str(newWarehouse.contents[i].sold_quantity,t[11]);
+			
 			str(newWarehouse.contents[i].grosir_discount,t[12]);
 			writeln(selectedDatabase,arrayToString(t,12));
 		end;
+		writeln('OK');
 	end;
 
 	procedure saveCourier(newCourierPool:CourierPool;filename:string);
 	var
 		i:longint;
 	begin
+		write('Saving Courier...');
 		assign(selectedDatabase,filename);
 		rewrite(selectedDatabase);
 		for i:=1 to newCourierPool.size do
@@ -53,12 +57,14 @@ var
 			str(newCourierPool.contents[i].delivery_time,t[5]);
 			writeln(selectedDatabase,arrayToString(t,5));
 		end;
+		writeln('OK');
 	end;
 
 	procedure saveShoppingCart(newShoppingCart:ShoppingCart;filename:string);
 	var
 		i:longint;
 	begin
+		write('Saving Shopping Cart...');
 		assign(selectedDatabase,filename);
 		rewrite(selectedDatabase);
 		for i:=1 to newShoppingCart.size do
@@ -74,12 +80,14 @@ var
 			str(newShoppingCart.contents[i].xl_quantity,t[9]);
 			writeln(selectedDatabase,arrayToString(t,9));
 		end;
+		writeln('OK');
 	end;
 
 	procedure saveTransaction(newTransactionPool:TransactionPool;filename:string);
 	var
 		i,j:longint;
 	begin
+		write('Saving Transaction...');
 		assign(selectedDatabase,filename);
 		rewrite(selectedDatabase);
 		for i:=1 to newTransactionPool.size do
@@ -104,5 +112,6 @@ var
 				writeln(selectedDatabase,arrayToString(t,15));
 			end;
 		end;
+		writeln('OK');
 	end;
 end.
