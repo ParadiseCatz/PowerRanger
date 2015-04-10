@@ -8,7 +8,7 @@ interface
 
 	function stringToArray(s:ansistring):arString;
 	function stringToDate(s:ansistring):Date;
-	function arrayToString(ar:arString):ansistring;
+	function arrayToString(ar:arString;sz:integer):ansistring;
 	function dateToString(d:date):ansistring;
 
 implementation
@@ -56,7 +56,7 @@ implementation
 		stringToDate := returnDate;
 	end;
 
-	function arrayToString(ar:arString,sz:integer):ansistring;
+	function arrayToString(ar:arString;sz:integer):ansistring;
 	var
 		i:integer;
 		returnString:ansistring;
@@ -70,8 +70,12 @@ implementation
 	end;
 
 	function dateToString(d:date):ansistring;
+	var day, month, year : string;
 	begin
-		dateToString:=d.day+'/'+d.month+'/'+d.year;
+		str(d.day, day);
+		str(d.month, month);
+		str(d.year, year);
+		dateToString:= day +'/'+ month +'/'+ year;
 	end;
 
 end.
