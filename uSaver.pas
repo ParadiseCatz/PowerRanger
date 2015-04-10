@@ -28,15 +28,15 @@ var
 			t[4]:=newWarehouse.contents[i].clothes.colour;
 			str(newWarehouse.contents[i].clothes.weight:0:2,t[5]);
 			t[6]:=newWarehouse.contents[i].clothes.material;
-			str(newWarehouse.contents[i].clothes.price:0:2,t[7]);
-			str(newWarehouse.contents[i].s_stock,t[8]);
-			str(newWarehouse.contents[i].m_stock,t[9]);
-			str(newWarehouse.contents[i].l_stock,t[10]);
-			str(newWarehouse.contents[i].xl_stock,t[11]);
-			str(newWarehouse.contents[i].sold_quantity,t[12]);
+			str(newWarehouse.contents[i].clothes.price:0:2,t[6]);
+			str(newWarehouse.contents[i].s_stock,t[7]);
+			str(newWarehouse.contents[i].m_stock,t[8]);
+			str(newWarehouse.contents[i].l_stock,t[9]);
+			str(newWarehouse.contents[i].xl_stock,t[10]);
+			str(newWarehouse.contents[i].sold_quantity,t[11]);
 
-			str(newWarehouse.contents[i].grosir_discount:0:2,t[13]);
-			writeln(selectedDatabase,arrayToString(t,13));
+			str(newWarehouse.contents[i].grosir_discount:0:2,t[12]);
+			writeln(selectedDatabase,arrayToString(t,12));
 		end;
 		close(selectedDatabase);
 		writeln('OK');
