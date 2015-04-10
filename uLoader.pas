@@ -22,6 +22,7 @@ var
 		r : array[0..50] of real;
 		a : array[0..50] of longint;
 	begin
+		write('Loading Warehouse...');
 		assign(selectedDatabase,filename);
 		reset(selectedDatabase);
 		size := 0;
@@ -43,6 +44,7 @@ var
 		end;
 		returnObject.size := size;
 		loadWarehouse := returnObject;
+		writeln('OK');
 	end;
 
 	function loadCourier(filename:string):CourierPool;
@@ -51,6 +53,7 @@ var
 		r : array[0..50] of real;
 		a : array[0..50] of longint;
 	begin
+		write('Loading Courier...');	
 		assign(selectedDatabase,filename);
 		reset(selectedDatabase);
 		size := 0;
@@ -65,6 +68,7 @@ var
 		end;
 		returnObject.size := size;
 		loadCourier := returnObject;
+		writeln('OK');
 	end;
 
 	function loadShoppingCart(filename:string):ShoppingCart;
@@ -74,6 +78,7 @@ var
 		r : array[0..50] of real;
 		a : array[0..50] of longint;
 	begin
+		write('Loading Shopping Cart...');
 		assign(selectedDatabase,filename);
 		reset(selectedDatabase);
 		size := 0;
@@ -93,10 +98,12 @@ var
 		end;
 		returnObject.size := size;
 		loadShoppingCart := returnObject;
+		writeln('OK');
 	end;
 
 	function loadTransaction(filename:string):TransactionPool;
 	var 
+		write('Loading Transaction...');
 		returnObject : TransactionPool;
 		clothesInput : Clothes;
 		shoppingCartItemInput : ShoppingCartItem;
@@ -133,5 +140,6 @@ var
 		end;
 		returnObject.size := size;
 		loadTransaction := returnObject;
+		writeln('OK');
 	end;
 end.
