@@ -1,63 +1,61 @@
 unit uWarehouse;
 
 interface
-	uses uWarehouseItem, uClothes;
+	uses uWarehouseItem, uClothes, uConfig;
 	
 	type
-		Warehouse = Object
-			contents : array[1..30] of WarehouseItem;
+		Warehouse = record
+			contents : array[1..ARRAY_LIMIT] of WarehouseItem;
 			size : longint;
-
-			constructor cons(
-				c : array of WarehouseItem;
-				sz : longint
-			);
-
-			function find(
-				name : String;
-				colour : String;
-				weight : real;
-				material : String;
-				price_per_kg : real
-			):Clothes;
-			procedure tes;
 		end;
 
-implementation
-	constructor Warehouse.cons(
+	function warehouseCons(
 		c : array of WarehouseItem;
 		sz : longint
-	);
-	begin
-		contents := c;
-		size := sz;
-	end;
+	):Warehouse;
 
-	function Warehouse.find(
+	function find(
 		name : String;
 		colour : String;
 		weight : real;
 		material : String;
-		price_per_kg : real
+		price : real;
+		warehouseSource : Warehouse
+	):Clothes;
+
+
+implementation
+	function warehouseCons(
+		c : array of WarehouseItem;
+		sz : longint
+	):Warehouse;
+	begin
+		warehouseCons.contents := c;
+		warehouseCons.size := sz;
+	end;
+
+	function find(
+		name : String;
+		colour : String;
+		weight : real;
+		material : String;
+		price : real;
+		warehouseSource : Warehouse
 	):Clothes;
 	var i:longint;
 	begin
-		for i:=1 to size do
+		for i:=1 to (warehouseSource.size) do
 		begin
-			if ((contents[i].clothes.name = name)
-			and	(contents[i].clothes.colour = colour)
-			and	(contents[i].clothes.weight = weight)
-			and	(contents[i].clothes.material = material)
-			and	(contents[i].clothes.price_per_kg = price_per_kg)) then
+			if ((warehouseSource.contents[i].clothes.name = name)
+			and	(warehouseSource.contents[i].clothes.colour = colour)
+			and	(warehouseSource.contents[i].clothes.weight = weight)
+			and	(warehouseSource.contents[i].clothes.material = material)
+			and	(warehouseSource.contents[i].clothes.price = price)) then
 			begin
-				find := contents[i].clothes;
+				find := warehouseSource.contents[i].clothes;
 				break;
 			end;
 		end;
 	end;
 
-	procedure Warehouse.tes;
-	begin
-	
-	end;
 end.

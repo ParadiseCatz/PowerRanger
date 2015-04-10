@@ -1,16 +1,19 @@
 unit uParser; //Service
 
 interface
-	uses uDate;
+	uses uDate,uConfig;
 
 	type
-		arString = array[1..30] of string;
-		Parser = Object
-			function stringToArray(s:ansistring):arString;
-			function stringToDate(s:ansistring):Date;
-		end;
+		arString = array[1..ARRAY_LIMIT] of string;
+
+	function stringToArray(s:ansistring):arString;
+	function stringToDate(s:ansistring):Date;
+	function arrayToString(ar:arString;sz:integer):ansistring;
+	function dateToString(d:date):ansistring;
+
+
 implementation
-	function Parser.stringToArray(s:ansistring):arString;
+	function stringToArray(s:ansistring):arString;
 	var
 		i, posAkhir, indexArray:longint;
 		returnArray : arString;
@@ -29,7 +32,8 @@ implementation
 		returnArray[indexArray] := copy(s, posAkhir, length(s)-posAkhir+1);
 		stringToArray := returnArray;
 	end;
-	function Parser.stringToDate(s:ansistring):Date;
+
+	function stringToDate(s:ansistring):Date;
 	var
 		i, posAkhir, indexArray:longint;
 		returnArray : array[0..50] of integer;
@@ -52,4 +56,27 @@ implementation
 		returnDate.year := returnArray[3];
 		stringToDate := returnDate;
 	end;
+
+	function arrayToString(ar:arString;sz:integer):ansistring;
+	var
+		i:integer;
+		returnString:ansistring;
+	begin
+		for i:=1 to sz-1 do
+		begin
+			returnString:=returnString+ar[i]+' | ';
+		end;
+		returnString:=returnString+ar[sz];
+		arrayToString:=returnString;
+	end;
+
+	function dateToString(d:date):ansistring;
+	var day, month, year : string;
+	begin
+		str(d.day, day);
+		str(d.month, month);
+		str(d.year, year);
+		dateToString:= day +'/'+ month +'/'+ year;
+	end;
+
 end.
