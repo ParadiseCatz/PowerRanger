@@ -8,6 +8,8 @@ interface
 
 	function stringToArray(s:ansistring):arString;
 	function stringToDate(s:ansistring):Date;
+	function arrayToString(ar:arString):ansistring;
+	function dateToString(d:date):ansistring;
 
 implementation
 	function stringToArray(s:ansistring):arString;
@@ -53,4 +55,23 @@ implementation
 		returnDate.year := returnArray[3];
 		stringToDate := returnDate;
 	end;
+
+	function arrayToString(ar:arString,sz:integer):ansistring;
+	var
+		i:integer;
+		returnString:ansistring;
+	begin
+		for i:=1 to sz-1 do
+		begin
+			returnString:=returnString+ar[i]+' | ';
+		end;
+		returnString:=returnString+ar[sz];
+		arrayToString:=returnString;
+	end;
+
+	function dateToString(d:date):ansistring;
+	begin
+		dateToString:=d.day+'/'+d.month+'/'+d.year;
+	end;
+
 end.
