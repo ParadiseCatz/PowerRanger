@@ -103,7 +103,6 @@ var
 
 	function loadTransaction(filename:string):TransactionPool;
 	var 
-		write('Loading Transaction...');
 		returnObject : TransactionPool;
 		clothesInput : Clothes;
 		shoppingCartItemInput : ShoppingCartItem;
@@ -113,6 +112,7 @@ var
 		r : array[0..50] of real;
 		a : array[0..50] of longint;
 	begin
+		write('Loading Transaction...');
 		assign(selectedDatabase,filename);
 		reset(selectedDatabase);
 		size := 0;
