@@ -19,7 +19,7 @@ interface
 		colour : String;
 		weight : real;
 		material : String;
-		price_per_kg : real;
+		price : real;
 		warehouseSource : Warehouse
 	):Clothes;
 
@@ -39,7 +39,7 @@ implementation
 		colour : String;
 		weight : real;
 		material : String;
-		price_per_kg : real;
+		price : real;
 		warehouseSource : Warehouse
 	):Clothes;
 	var i:longint;
@@ -50,7 +50,7 @@ implementation
 			and	(warehouseSource.contents[i].clothes.colour = colour)
 			and	(warehouseSource.contents[i].clothes.weight = weight)
 			and	(warehouseSource.contents[i].clothes.material = material)
-			and	(warehouseSource.contents[i].clothes.price_per_kg = price_per_kg)) then
+			and	(warehouseSource.contents[i].clothes.price = price)) then
 			begin
 				find := warehouseSource.contents[i].clothes;
 				break;
