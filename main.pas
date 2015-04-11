@@ -1,6 +1,6 @@
 program OnlineShopping;
 
-uses uLoader, uTransactionPool, uShoppingCart, uCourierPool, uWarehouse, uConfig, uSaver;
+uses uLoader, uTransactionPool, uShoppingCart, uCourierPool, uWarehouse, uConfig, uSaver, uValidator;
 
 var
 	userCommand : string;
@@ -25,6 +25,11 @@ begin
 	saveTransaction(mainTransactionPool,DATABASE_TRANSACTION_FILENAME);
 end;
 
+procedure prompt();
+begin
+	write('> ');
+end;
+
 procedure userGreeter();
 begin
 	writeln('=======================');
@@ -38,5 +43,11 @@ begin
 	userGreeter();
 	loadAll();
 	saveAll();
+	repeat
+		repeat
+			prompt();
+			readln(userCommand);
+		until (validCommand(userCommand));
+	until (userCommand = 'exit');
 end.
 
