@@ -21,7 +21,7 @@ interface
 	):ShoppingCartItem;
 
 	function totalQuantity(sci : ShoppingCartItem):longint;
-	function totalWeight(sci : ShoppingCartItem):real;
+	function totalItemWeight(sci : ShoppingCartItem):real;
 	function totalItemPrice(sci:ShoppingCartItem):real;
 
 implementation
@@ -45,9 +45,9 @@ implementation
 		totalQuantity:=sci.s_quantity+sci.m_quantity+sci.l_quantity+sci.xl_quantity;
 	end;
 
-	function totalWeight(sci:ShoppingCartItem):real;
+	function totalItemWeight(sci:ShoppingCartItem):real;
 	begin
-		totalWeight:=totalQuantity(sci)*sci.clothes.weight;
+		totalItemWeight:=totalQuantity(sci)*sci.clothes.weight;
 	end;
 
 	function totalItemPrice(sci:ShoppingCartItem):real;
