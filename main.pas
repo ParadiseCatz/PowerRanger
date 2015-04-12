@@ -30,6 +30,11 @@ begin
 	write('> ');
 end;
 
+procedure showExpedition(cp:CourierPool);
+begin
+	writeCourierPool(cp);
+end;
+
 procedure userGreeter();
 begin
 	writeln('=======================');
