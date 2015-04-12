@@ -42,16 +42,16 @@ implementation
 
 	function totalItemQuantity(sci:ShoppingCartItem):longint;
 	begin
-		totalQuantity:=sci.s_quantity+sci.m_quantity+sci.l_quantity+sci.xl_quantity;
+		totalItemQuantity:=sci.s_quantity+sci.m_quantity+sci.l_quantity+sci.xl_quantity;
 	end;
 
 	function totalItemWeight(sci:ShoppingCartItem):real;
 	begin
-		totalItemWeight:=totalQuantity(sci)*sci.clothes.weight;
+		totalItemWeight:=totalItemQuantity(sci)*sci.clothes.weight;
 	end;
 
 	function totalItemPrice(sci:ShoppingCartItem):real;
 	begin
-		totalItemPrice:=totalQuantity(sci)*sci.clothes.price;
+		totalItemPrice:=totalItemQuantity(sci)*sci.clothes.price;
 	end;
 end.
