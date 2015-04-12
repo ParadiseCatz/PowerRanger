@@ -1,7 +1,7 @@
 unit uWriter;
 
 interface
-	uses uClothes,uShoppingCart,uShoppingCartItem,uWarehouse,uWarehouseItem,uCourier,uCourierPool;
+	uses uClothes,uShoppingCart,uShoppingCartItem,uWarehouse,uWarehouseItem,uCourier,uCourierPool,uDate;
 
 	procedure writeClothesName(c:Clothes);
 	procedure writeClothesCategory(c:Clothes);
@@ -11,6 +11,8 @@ interface
 	procedure writeClothesMaterial(c:Clothes);
 	procedure writeClothesPrice(c:Clothes);
 
+	procedure writeDate(d:Date);
+	
 	procedure writeItemStock(wi:WarehouseItem);
 
 	procedure writeCourier(co:Courier);
@@ -57,6 +59,11 @@ implementation
 	procedure writeClothesPrice(c:Clothes);
 	begin
 		writeln('Rp ',c.price:0:0);
+	end;
+
+	procedure writeDate(d:Date);
+	begin
+		writeln(d.day,'/',d.month,'/',d.year);
 	end;
 
 	procedure writeItemStock(wi:WarehouseItem);
