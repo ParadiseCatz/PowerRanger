@@ -62,6 +62,7 @@ implementation
 		i:integer;
 		returnString:ansistring;
 	begin
+		returnString:='';
 		for i:=1 to sz-1 do
 		begin
 			returnString:=returnString+ar[i]+' | ';
