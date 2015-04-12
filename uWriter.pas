@@ -11,6 +11,11 @@ interface
 	procedure writeClothesMaterial(c:Clothes);
 	procedure writeClothesPrice(c:Clothes);
 
+	procedure writeItemStock(wi:WarehouseItem);
+
+	procedure writeCourier(co:Courier);
+	procedure writeCourierPool(cp:CourierPool);
+
 	procedure writeShoppingCartQuantity(sci:ShoppingCartItem);
 	procedure writeTotalItemWeight(sci:ShoppingCartItem);
 	procedure writeTotalItemPrice(sci:ShoppingCartItem);
@@ -64,11 +69,22 @@ implementation
 
 	procedure writeCourier(co:Courier);
 	begin
-		writeln('Nama Ekspedisi				: ',co.name);
-		writeln('Jenis Layanan Pengiriman	: ',co.type_of_service);
-		writeln('Kota Tujuan				: ',co.destination_city);
-		writeln('Harga per kg				: ',co.price_per_kg:0:2);
-		writeln('Lama Pengiriman			: ',co.delivery_time);
+		writeln('Nama Ekspedisi : ',co.name);
+		writeln('Jenis Layanan Pengiriman : ',co.type_of_service);
+		writeln('Kota Tujuan : ',co.destination_city);
+		writeln('Harga per kg : ',co.price_per_kg:0:2);
+		writeln('Lama Pengiriman : ',co.delivery_time);
+	end;
+
+	procedure writeCourierPool(cp:CourierPool);
+	var
+		i:integer;
+	begin
+		for i:=1 to cp.size do
+		begin
+			writeCourier(cp.contents[i]);
+			writeln;
+		end;
 	end;
 
 	procedure writeShoppingCartQuantity(sci:ShoppingCartItem);
@@ -129,6 +145,7 @@ implementation
 		end;
 		writeTotalShoppingCartPrice(sc);
 		writeTotalShoppingCartWeight(sc);
+		writeln;
 	end;
 
 end.
