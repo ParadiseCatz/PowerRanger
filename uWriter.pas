@@ -54,6 +54,23 @@ implementation
 		writeln('Rp ',c.price:0:0);
 	end;
 
+	procedure writeItemStock(wi:WarehouseItem);
+	begin
+		write('S: ',wi.s_stock,' ');
+		write('M: ',wi.m_stock,' ');
+		write('L: ',wi.l_stock,' ');
+		writeln('XL: ',wi.xl_stock);
+	end;
+
+	procedure writeCourier(co:Courier);
+	begin
+		writeln('Nama Ekspedisi				: ',co.name);
+		writeln('Jenis Layanan Pengiriman	: ',co.type_of_service);
+		writeln('Kota Tujuan				: ',co.destination_city);
+		writeln('Harga per kg				: ',co.price_per_kg:0:2);
+		writeln('Lama Pengiriman			: ',co.delivery_time);
+	end;
+
 	procedure writeShoppingCartQuantity(sci:ShoppingCartItem);
 	begin
 		if (sci.s_quantity>0) then
