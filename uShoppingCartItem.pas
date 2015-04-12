@@ -20,7 +20,7 @@ interface
 		xl : integer
 	):ShoppingCartItem;
 
-	function totalQuantity(sci : ShoppingCartItem):longint;
+	function totalItemQuantity(sci : ShoppingCartItem):longint;
 	function totalItemWeight(sci : ShoppingCartItem):real;
 	function totalItemPrice(sci:ShoppingCartItem):real;
 
@@ -40,7 +40,7 @@ implementation
 		shoppingCartItemCons.xl_quantity := xl;
 	end;
 
-	function totalQuantity(sci:ShoppingCartItem):longint;
+	function totalItemQuantity(sci:ShoppingCartItem):longint;
 	begin
 		totalQuantity:=sci.s_quantity+sci.m_quantity+sci.l_quantity+sci.xl_quantity;
 	end;
