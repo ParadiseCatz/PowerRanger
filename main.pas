@@ -35,6 +35,41 @@ begin
 	writeCourierPool(cp);
 end;
 
+procedure branchBased(uc:string);
+begin
+	if (uc = 'load') then loadAll()
+	else 
+	if (uc = 'showPopulars') then 
+	else 
+	if (uc = 'showDetailProduct') then 
+	else 
+	if (uc = 'searchClothesByKeyword') then 
+	else 
+	if (uc = 'sortPrice') then 
+	else 
+	if (uc = 'filterClothes') then 
+	else 
+	if (uc = 'filterByPrice') then 
+	else 
+	if (uc = 'showExpedition') then 
+	else 
+	if (uc = 'addToCart') then 
+	else 
+	if (uc = 'removeFromCart') then 
+	else 
+	if (uc = 'calculatePrice') then 
+	else 
+	if (uc = 'checkout') then 
+	else 
+	if (uc = 'updateClothes') then 
+	else 
+	if (uc = 'discountGrosir') then 
+	else 
+	if (uc = 'showTransaction') then 
+	else 
+	if (uc = 'retur') then 
+end;
+
 procedure userGreeter();
 begin
 	writeln('=======================');
@@ -53,6 +88,7 @@ begin
 			prompt();
 			readln(userCommand);
 		until (validCommand(userCommand));
+		branchBased(userCommand);
 	until (userCommand = 'exit');
 	//saveAll();
 end.
