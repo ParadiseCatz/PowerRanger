@@ -17,6 +17,8 @@ interface
 	function totalShoppingCartWeight(sc : ShoppingCart):real;
 	function totalShoppingCartPrice(sc : ShoppingCart):real;
 
+	procedure clearShoppingCart(var sc : ShoppingCart);
+
 implementation
 	function shoppingCartCons(
 		c : array of ShoppingCartItem;
@@ -53,5 +55,10 @@ implementation
 		end;
 
 		totalShoppingCartPrice:=returnPrice;
+	end;
+
+	procedure clearShoppingCart(var sc : ShoppingCart);
+	begin
+		sc.size:=0;
 	end;
 end.
