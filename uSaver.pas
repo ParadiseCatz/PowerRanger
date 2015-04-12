@@ -55,7 +55,7 @@ var
 			t[2]:=newCourierPool.contents[i].type_of_service;
 			t[3]:=newCourierPool.contents[i].destination_city;
 			str(newCourierPool.contents[i].price_per_kg:0:2,t[4]);
-			str(newCourierPool.contents[i].delivery_time:0:2,t[5]);
+			str(newCourierPool.contents[i].delivery_time,t[5]);
 			writeln(selectedDatabase,arrayToString(t,5));
 		end;
 		close(selectedDatabase);
@@ -110,7 +110,7 @@ var
 				t[11]:=newTransactionPool.contents[i].courier.type_of_service;
 				t[12]:=newTransactionPool.contents[i].courier.destination_city;
 				str(newTransactionPool.contents[i].courier.price_per_kg:0:2,t[13]);
-				str(newTransactionPool.contents[i].courier.delivery_time:0:2,t[14]);
+				str(newTransactionPool.contents[i].courier.delivery_time,t[14]);
 				t[15]:=dateToString(newTransactionPool.contents[i].delivery_date);
 				writeln(selectedDatabase,arrayToString(t,15));
 			end;

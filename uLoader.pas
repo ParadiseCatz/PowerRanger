@@ -63,8 +63,8 @@ var
 			t := stringToArray(line);
 			size := size + 1;
 			val(t[4], r[1]);
-			val(t[5], r[2]);
-			returnObject.contents[size] := courierCons(t[1], t[2], t[3], r[1], r[2]);
+			val(t[5], a[1]);
+			returnObject.contents[size] := courierCons(t[1], t[2], t[3], r[1], a[1]);
 		end;
 		returnObject.size := size;
 		loadCourier := returnObject;
@@ -132,8 +132,8 @@ var
 			shoppingCartInput.contents[1] := shoppingCartItemInput;
 			shoppingCartInput.size := 1;
 			val(t[13], r[3]);
-			val(t[14], r[4]);
-			courierInput := courierCons(t[10], t[11], t[12], r[3], r[4]);
+			val(t[14], a[5]);
+			courierInput := courierCons(t[10], t[11], t[12], r[3], a[5]);
 			dateInput := stringToDate(t[15]);
 			returnObject.contents[size] := transactionCons(shoppingCartInput, courierInput, dateInput);
 

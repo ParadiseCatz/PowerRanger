@@ -1,7 +1,7 @@
 unit uWriter;
 
 interface
-	uses uClothes,uShoppingCart,uShoppingCartItem;
+	uses uClothes,uShoppingCart,uShoppingCartItem,uWarehouse,uWarehouseItem,uCourier,uCourierPool;
 
 	procedure writeClothesName(c:Clothes);
 	procedure writeClothesCategory(c:Clothes);
