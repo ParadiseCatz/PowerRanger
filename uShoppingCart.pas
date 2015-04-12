@@ -14,6 +14,10 @@ interface
 		sz : longint
 	):ShoppingCart;
 
+	function totalShoppingCartPrice(
+		sc : ShoppingCart
+	):real;
+
 
 implementation
 	function shoppingCartCons(
@@ -25,4 +29,17 @@ implementation
 		shoppingCartCons.size := sz;
 	end;
 
+	function totalShoppingCartPrice(sc : ShoppingCart):real;
+	var
+		returnPrice:real;
+		i:integer;
+	begin
+		returnPrice:=0;
+		for i:=1 to sc.size do
+		begin
+			returnPrice:=returnPrice+totalItemPrice(sc.contents[i]);
+		end;
+
+		totalShoppingCartPrice:=returnPrice;
+	end;
 end.
