@@ -35,7 +35,7 @@ begin
 	writeCourierPool(cp);
 end;
 
-procedure branchBased(uc:string);
+procedure branchBasedOn(uc:string);
 begin
 	if (uc = 'load') then loadAll()
 	else 
@@ -51,7 +51,7 @@ begin
 	else 
 	if (uc = 'filterByPrice') then 
 	else 
-	if (uc = 'showExpedition') then showExpedition();
+	if (uc = 'showExpedition') then showExpedition(mainCourierPool)
 	else 
 	if (uc = 'addToCart') then 
 	else 
@@ -88,7 +88,7 @@ begin
 			prompt();
 			readln(userCommand);
 		until (validCommand(userCommand));
-		branchBased(userCommand);
+		branchBasedOn(userCommand);
 	until (userCommand = 'exit');
 	//saveAll();
 end.
