@@ -51,7 +51,7 @@ begin
 	else 
 	if (uc = 'filterByPrice') then 
 	else 
-	if (uc = 'showExpedition') then 
+	if (uc = 'showExpedition') then showExpedition();
 	else 
 	if (uc = 'addToCart') then 
 	else 
