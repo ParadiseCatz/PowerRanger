@@ -49,5 +49,6 @@ begin
 			readln(userCommand);
 		until (validCommand(userCommand));
 	until (userCommand = 'exit');
+	//saveAll();
 end.
 
