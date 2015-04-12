@@ -1,1 +1,1 @@
-JNE | YES | Surabaya | 9000.00 | 1.00
+JNE | YES | Surabaya | 9000.00 | 1

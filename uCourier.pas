@@ -8,7 +8,7 @@ interface
 			type_of_service : String;
 			destination_city : String;
 			price_per_kg : real;
-			delivery_time : real;
+			delivery_time : integer;
 		end;
 			
 	function courierCons(
@@ -16,7 +16,7 @@ interface
 		tos : String;
 		dc : String;
 		ppk : real;
-		dt : real
+		dt : integer
 	):Courier;
 
 
@@ -26,7 +26,7 @@ implementation
 		tos : String;
 		dc : String;
 		ppk : real;
-		dt : real
+		dt : integer
 	):Courier;
 	begin
 		courierCons.name := nm;
