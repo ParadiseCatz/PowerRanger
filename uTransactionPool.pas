@@ -1,7 +1,7 @@
 unit uTransactionPool;
 
 interface
-	uses uTransaction,uConfig;
+	uses uTransaction,uConfig,uAlgorithm,uDate;
 	
 	type
 		TransactionPool = record
@@ -13,7 +13,8 @@ interface
 		c : array of Transaction;
 		sz : longint
 	):TransactionPool;
-		
+	
+	procedure sortByDate(tp : TransactionPool);
 
 implementation
 	function transactionPoolCons(
@@ -23,6 +24,22 @@ implementation
 	begin
 		transactionPoolCons.contents := c;
 		transactionPoolCons.size := sz;
+	end;
+
+	procedure sortByDate(tp : TransactionPool);
+	var
+		i,j:integer;
+	begin
+		for i:=1 to tp.size do
+		begin
+			for j:=i+1 to tp.size do
+			begin
+				if (compareDate(tp.contents[j-1].delivery_date,tp.contents[j].delivery_date)) then
+				begin
+					swap(tp.contents[j-1],tp.contents[j]);
+				end;
+			end;
+		end;
 	end;
 
 end.
