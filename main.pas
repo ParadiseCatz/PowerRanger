@@ -81,6 +81,8 @@ begin
 	if (uc = 'showTransaction') then 
 	else 
 	if (uc = 'retur') then 
+	else 
+	if (uc = 'help') then 
 end;
 
 procedure userGreeter();
