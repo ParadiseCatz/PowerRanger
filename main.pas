@@ -17,6 +17,19 @@ begin
 	mainTransactionPool := loadTransaction(DATABASE_TRANSACTION_FILENAME);
 end;
 
+procedure showPopulars(); //F2
+var
+	popularWarehouse:Warehouse;
+	i:longint;
+begin
+	popularWarehouse := warehouseGetPopulars(mainWarehouse);
+	for i:=1 to popularWarehouse.size do
+	begin
+		write(i,'. ');
+		writeWarehouseItem(popularWarehouse.contents[i]);
+	end;
+end;
+
 procedure saveAll();
 begin
 	saveWarehouse(mainWarehouse,DATABASE_CLOTHES_FILENAME);
@@ -26,6 +39,7 @@ begin
 end;
 
 procedure prompt();
+
 begin
 	write('> ');
 end;
@@ -35,11 +49,20 @@ begin
 	writeCourierPool(cp);
 end;
 
+procedure help();
+var
+	i:longint;
+begin
+	writeln('Command Available:');
+	for i:=1 to COMMAND_NUMBER do
+		writeln('- ', COMMAND_LIST[i]);
+end;
+
 procedure branchBasedOn(uc:string);
 begin
 	if (uc = 'load') then loadAll()
 	else 
-	if (uc = 'showPopulars') then 
+	if (uc = 'showPopulars') then showPopulars()
 	else 
 	if (uc = 'showDetailProduct') then 
 	else 
@@ -68,6 +91,8 @@ begin
 	if (uc = 'showTransaction') then 
 	else 
 	if (uc = 'retur') then 
+	else 
+	if (uc = 'help') then help();
 end;
 
 procedure userGreeter();
