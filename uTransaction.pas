@@ -1,7 +1,7 @@
 unit uTransaction;
 
 interface
-	uses uShoppingCart, uCourier, uDate;
+	uses uShoppingCart, uShoppingCartItem, uCourier, uDate;
 	
 	type
 		Transaction = record
@@ -11,7 +11,7 @@ interface
 		end;
 
 	function transactionCons(
-		sc : ShoppingCartItem;
+		sci : ShoppingCartItem;
 		c : Courier;
 		dt : Date
 	):Transaction;
