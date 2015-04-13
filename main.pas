@@ -1,6 +1,6 @@
 program OnlineShopping;
 
-uses uLoader, uTransactionPool, uShoppingCart, uCourierPool, uWarehouse, uConfig, uSaver, uValidator,uWriter, uClothes;
+uses uLoader, uTransactionPool, uShoppingCart, uCourierPool, uWarehouse, uConfig, uSaver, uValidator,uWriter, uClothes, uShoppingCartItem;
 
 var
 	userCommand : string;
@@ -30,18 +30,7 @@ begin
 	end;
 end;
 
-procedure sortPrice(); //F3
-var
-	i:longint;
-begin
-	sortByPrice(mainWarehouse);
-	for i:=1 to mainWarehouse.size do
-	begin
-		writeWarehouseItem(mainWarehouse.contents[i]);
-	end;
-end;
-
-procedure showDetailProduct();
+procedure showDetailProduct(); //F3
 var
 	name:string;
 	result:Clothes;
@@ -52,6 +41,17 @@ begin
 		writeln('Clothes not found.')
 	else
 		writeClothes(result);
+end;
+
+procedure sortPrice(); //F5
+var
+	i:longint;
+begin
+	sortByPrice(mainWarehouse);
+	for i:=1 to mainWarehouse.size do
+	begin
+		writeWarehouseItem(mainWarehouse.contents[i]);
+	end;
 end;
 
 procedure saveAll();
@@ -70,6 +70,28 @@ end;
 procedure showExpedition(cp:CourierPool); //F8
 begin
 	writeCourierPool(cp);
+end;
+
+procedure addToCart(); //F9
+var
+	name:string;
+	result:Clothes;
+	sci:ShoppingCartItem;
+begin
+	write('Please enter clothes name: '); readln(name);
+	result := warehouseFindByName(name, mainWarehouse);
+	if (result.name = '#') then
+		writeln('Clothes not found.')
+	else
+	begin
+		sci.clothes:=result;
+		write('S size quantity: '); readln(sci.s_quantity);
+		write('M size quantity: '); readln(sci.m_quantity);
+		write('L size quantity: '); readln(sci.l_quantity);
+		write('XL size quantity: '); readln(sci.xl_quantity);
+		shoppingCartAdd(sci, mainShoppingCart);
+		writeln('Item Added to Shopping Cart.');
+	end;
 end;
 
 procedure help();
@@ -99,7 +121,7 @@ begin
 	else 
 	if (uc = 'showExpedition') then showExpedition(mainCourierPool)
 	else 
-	if (uc = 'addToCart') then 
+	if (uc = 'addToCart') then addToCart()
 	else 
 	if (uc = 'removeFromCart') then 
 	else 

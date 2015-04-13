@@ -18,6 +18,7 @@ interface
 	function shoppingCartTotalPrice(sc : ShoppingCart):real;
 
 	procedure shoppingCartClear(var sc : ShoppingCart);
+	procedure shoppingCartAdd(sci:ShoppingCartItem; var sc:ShoppingCart);
 
 implementation
 	function shoppingCartCons(
@@ -60,5 +61,11 @@ implementation
 	procedure shoppingCartClear(var sc : ShoppingCart);
 	begin
 		sc.size:=0;
+	end;
+
+	procedure shoppingCartAdd(sci:ShoppingCartItem; var sc:ShoppingCart);
+	begin
+		sc.size := sc.size + 1;
+		sc.contents[sc.size] := sci;
 	end;
 end.
