@@ -51,7 +51,7 @@ implementation
 
 	procedure writeClothesWeight(c:Clothes);
 	begin
-		writeln('Weight: ',c.weight);
+		writeln('Weight: ',c.weight:0:2);
 	end;
 
 	procedure writeClothesMaterial(c:Clothes);
