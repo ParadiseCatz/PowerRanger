@@ -23,6 +23,8 @@ interface
 		warehouseSource : Warehouse
 	):Clothes;
 
+	function warehouseFindByName(name:string; warehouseSource:Warehouse):Clothes;
+
 	function warehouseGetPopulars(warehouseSource:Warehouse):Warehouse;
 
 	procedure sortByPrice(var whs:Warehouse);
@@ -57,6 +59,18 @@ implementation
 			begin
 				warehouseFind := warehouseSource.contents[i].clothes;
 				break;
+			end;
+		end;
+	end;
+
+	function warehouseFindByName(name:string; warehouseSource:Warehouse):Clothes;
+	var i:longint;
+	begin
+		for i:=1 to warehouseSource.size do
+		begin
+			if (warehouseSource.contents[i].clothes.name = name) then
+			begin
+				warehouseFindByName := warehouseSource.contents[i].clothes;
 			end;
 		end;
 	end;
