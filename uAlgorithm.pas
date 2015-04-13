@@ -4,6 +4,8 @@ interface
 
 	function max(a, b:longint):longint;
 	function max(a, b:real):real;
+	function min(a, b:longint):longint;
+	function min(a, b:real):real;
 	function stringMatching(text, pattern:string):boolean;
 
 implementation
@@ -21,6 +23,22 @@ implementation
 			max:=b
 		else
 			max:=a;
+	end;
+
+	function min(a, b:longint):longint;
+	begin
+		if (a>b) then
+			min:=b
+		else
+			min:=a;
+	end;
+
+	function min(a, b:real):real;
+	begin
+		if (a>b) then
+			min:=b
+		else
+			min:=a;
 	end;
 
 	function stringMatching(text, pattern:string):boolean;
@@ -48,5 +66,28 @@ implementation
 			i:=i+max(1,j-P[j]);
 		end;
 		stringMatching := found;
+	end;
+
+	function editDistance(s, t: string): longint;
+	var
+		d: array of array of integer;
+		i, j, n, m: integer;
+	begin
+	n := length(t);
+	m := length(s);
+	SetLength(d, m+1, n+1);
+
+	for i:=0 to m do
+		d[i,0] := i;
+	for j:=0 to n do
+		d[0,j] := j;
+
+	for j:=1 to n do
+		for i:=1 to m do
+			if (s[i] = t[j]) then  
+				d[i,j] := d[i-1,j-1]
+			else
+				d[i,j] := min(d[i-1,j] + 1, min(d[i,j-1] + 1, d[i-1,j-1] + 1));
+	editDistance := d[m,n];
 	end;
 end.

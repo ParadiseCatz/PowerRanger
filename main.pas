@@ -17,7 +17,7 @@ begin
 	mainTransactionPool := loadTransaction(DATABASE_TRANSACTION_FILENAME);
 end;
 
-procedure showPopulars();
+procedure showPopulars(); //F2
 var
 	popularWarehouse:Warehouse;
 	i:longint;
