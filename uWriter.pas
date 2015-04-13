@@ -13,7 +13,9 @@ interface
 
 	procedure writeDate(d:Date);
 	
+	procedure writeWarehouseItem(wi:WarehouseItem);
 	procedure writeItemStock(wi:WarehouseItem);
+	procedure writeSoldQuantity(wi:WarehouseItem);
 
 	procedure writeCourier(co:Courier);
 	procedure writeCourierPool(cp:CourierPool);
@@ -66,12 +68,26 @@ implementation
 		writeln(d.day,'/',d.month,'/',d.year);
 	end;
 
+	procedure writeWarehouseItem(wi:WarehouseItem);
+	begin
+		writeClothesName(wi.clothes);
+		writeClothesColour(wi.clothes);
+		writeItemStock(wi);
+		writeClothesPrice(wi.clothes);
+		writeSoldQuantity(wi);
+	end;
+
 	procedure writeItemStock(wi:WarehouseItem);
 	begin
 		write('S: ',wi.s_stock,' ');
 		write('M: ',wi.m_stock,' ');
 		write('L: ',wi.l_stock,' ');
 		writeln('XL: ',wi.xl_stock);
+	end;
+
+	procedure writeSoldQuantity(wi:WarehouseItem);
+	begin
+		writeln('Banyak dibeli: ',wi.sold_quantity,' kali');
 	end;
 
 	procedure writeCourier(co:Courier);
