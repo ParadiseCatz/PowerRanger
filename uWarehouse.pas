@@ -64,13 +64,18 @@ implementation
 	end;
 
 	function warehouseFindByName(name:string; warehouseSource:Warehouse):Clothes;
-	var i:longint;
+	var 
+		i:longint;
+		dummy:Clothes;
 	begin
+		dummy.name := '#';
+		warehouseFindByName := dummy;
 		for i:=1 to warehouseSource.size do
 		begin
 			if (warehouseSource.contents[i].clothes.name = name) then
 			begin
 				warehouseFindByName := warehouseSource.contents[i].clothes;
+				break;
 			end;
 		end;
 	end;

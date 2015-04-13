@@ -1,6 +1,6 @@
 program OnlineShopping;
 
-uses uLoader, uTransactionPool, uShoppingCart, uCourierPool, uWarehouse, uConfig, uSaver, uValidator,uWriter;
+uses uLoader, uTransactionPool, uShoppingCart, uCourierPool, uWarehouse, uConfig, uSaver, uValidator,uWriter, uClothes;
 
 var
 	userCommand : string;
@@ -30,7 +30,7 @@ begin
 	end;
 end;
 
-procedure sortPrice();
+procedure sortPrice(); //F3
 var
 	i:longint;
 begin
@@ -39,6 +39,19 @@ begin
 	begin
 		writeWarehouseItem(mainWarehouse.contents[i]);
 	end;
+end;
+
+procedure showDetailProduct();
+var
+	name:string;
+	result:Clothes;
+begin
+	write('Please enter clothes name: '); readln(name);
+	result := warehouseFindByName(name, mainWarehouse);
+	if (result.name = '#') then
+		writeln('Clothes not found.')
+	else
+		writeClothes(result);
 end;
 
 procedure saveAll();
@@ -50,7 +63,6 @@ begin
 end;
 
 procedure prompt();
-
 begin
 	write('> ');
 end;
@@ -75,7 +87,7 @@ begin
 	else 
 	if (uc = 'showPopulars') then showPopulars()
 	else 
-	if (uc = 'showDetailProduct') then 
+	if (uc = 'showDetailProduct') then showDetailProduct()
 	else 
 	if (uc = 'searchClothesByKeyword') then 
 	else 
