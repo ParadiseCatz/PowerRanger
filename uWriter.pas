@@ -20,11 +20,11 @@ interface
 	procedure writeCourier(co:Courier);
 	procedure writeCourierPool(cp:CourierPool);
 
-	procedure writeShoppingCartQuantity(sci:ShoppingCartItem);
-	procedure writeTotalItemWeight(sci:ShoppingCartItem);
-	procedure writeTotalItemPrice(sci:ShoppingCartItem);
-	procedure writeTotalShoppingCartWeight(sc:ShoppingCart);
-	procedure writeTotalShoppingCartPrice(sc:ShoppingCart);
+	procedure writeShoppingCartItemQuantity(sci:ShoppingCartItem);
+	procedure writeShoppingCartItemTotalWeight(sci:ShoppingCartItem);
+	procedure writeShoppingCartItemTotalPrice(sci:ShoppingCartItem);
+	procedure writeShoppingCartTotalWeight(sc:ShoppingCart);
+	procedure writeShoppingCartTotalPrice(sc:ShoppingCart);
 	procedure writeShoppingCartItems(sc:ShoppingCart);
 
 implementation
@@ -110,7 +110,7 @@ implementation
 		end;
 	end;
 
-	procedure writeShoppingCartQuantity(sci:ShoppingCartItem);
+	procedure writeShoppingCartItemQuantity(sci:ShoppingCartItem);
 	begin
 		if (sci.s_quantity>0) then
 		begin
@@ -134,24 +134,24 @@ implementation
 		writeln;
 	end;
 
-	procedure writeTotalItemWeight(sci:ShoppingCartItem);
+	procedure writeShoppingCartItemTotalWeight(sci:ShoppingCartItem);
 	begin
-		writeln('Berat: ',totalItemWeight(sci):0:2);
+		writeln('Berat: ',shoppingCartItemTotalWeight(sci):0:2);
 	end;
 
-	procedure writeTotalItemPrice(sci:ShoppingCartItem);
+	procedure writeShoppingCartItemTotalPrice(sci:ShoppingCartItem);
 	begin
-		writeln('Rp ',sci.clothes.price:0:2,' x ',totalItemQuantity(sci),' = Rp ',totalItemPrice(sci):0:2);
+		writeln('Rp ',sci.clothes.price:0:2,' x ',shoppingCartItemTotalQuantity(sci),' = Rp ',shoppingCartItemTotalPrice(sci):0:2);
 	end;
 
-	procedure writeTotalShoppingCartWeight(sc:ShoppingCart);
+	procedure writeShoppingCartTotalWeight(sc:ShoppingCart);
 	begin
-		writeln('Berat: ',totalShoppingCartWeight(sc):0:2);
+		writeln('Berat: ',shoppingCartTotalWeight(sc):0:2);
 	end;
 
-	procedure writeTotalShoppingCartPrice(sc:ShoppingCart);
+	procedure writeShoppingCartTotalPrice(sc:ShoppingCart);
 	begin
-		writeln('Total: Rp ',totalShoppingCartPrice(sc):0:2);
+		writeln('Total: Rp ',shoppingCartTotalPrice(sc):0:2);
 	end;
 
 	procedure writeShoppingCartItems(sc:ShoppingCart);
@@ -162,12 +162,12 @@ implementation
 		begin
 			write(i,'. '); writeClothesName(sc.contents[i].clothes);
 			writeClothesColour(sc.contents[i].clothes);
-			writeShoppingCartQuantity(sc.contents[i]);
-			writeTotalItemWeight(sc.contents[i]);
-			writeTotalItemPrice(sc.contents[i]);
+			writeShoppingCartItemQuantity(sc.contents[i]);
+			writeShoppingCartItemTotalWeight(sc.contents[i]);
+			writeShoppingCartItemTotalPrice(sc.contents[i]);
 		end;
-		writeTotalShoppingCartPrice(sc);
-		writeTotalShoppingCartWeight(sc);
+		writeShoppingCartTotalPrice(sc);
+		writeShoppingCartTotalWeight(sc);
 		writeln;
 	end;
 

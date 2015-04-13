@@ -106,7 +106,6 @@ var
 		returnObject : TransactionPool;
 		clothesInput : Clothes;
 		shoppingCartItemInput : ShoppingCartItem;
-		shoppingCartInput : ShoppingCart;
 		courierInput : Courier;
 		dateInput : Date;
 		r : array[0..50] of real;
@@ -129,13 +128,11 @@ var
 			val(t[9], a[4]);
 			clothesInput := clothesCons(t[1], '', '', t[2], r[1], t[4], r[2]);
 			shoppingCartItemInput := shoppingCartItemCons(clothesInput, a[1], a[2], a[3], a[4]);
-			shoppingCartInput.contents[1] := shoppingCartItemInput;
-			shoppingCartInput.size := 1;
 			val(t[13], r[3]);
 			val(t[14], a[5]);
 			courierInput := courierCons(t[10], t[11], t[12], r[3], a[5]);
 			dateInput := stringToDate(t[15]);
-			returnObject.contents[size] := transactionCons(shoppingCartInput, courierInput, dateInput);
+			returnObject.contents[size] := transactionCons(shoppingCartItemInput, courierInput, dateInput);
 
 		end;
 		returnObject.size := size;

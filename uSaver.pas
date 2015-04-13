@@ -88,32 +88,29 @@ var
 
 	procedure saveTransaction(newTransactionPool:TransactionPool;filename:string);
 	var
-		i,j:longint;
+		i:longint;
 	begin
 		write('Saving Transaction...');
 		assign(selectedDatabase,filename);
 		rewrite(selectedDatabase);
 		for i:=1 to newTransactionPool.size do
 		begin
-			for j:=1 to newTransactionPool.contents[i].shopping_cart.size do
-			begin
-				t[1]:=newTransactionPool.contents[i].shopping_cart.contents[j].clothes.name;
-				t[2]:=newTransactionPool.contents[i].shopping_cart.contents[j].clothes.colour;
-				str(newTransactionPool.contents[i].shopping_cart.contents[j].clothes.weight:0:2,t[3]);
-				t[4]:=newTransactionPool.contents[i].shopping_cart.contents[j].clothes.material;
-				str(newTransactionPool.contents[i].shopping_cart.contents[j].clothes.price:0:2,t[5]);
-				str(newTransactionPool.contents[i].shopping_cart.contents[j].s_quantity,t[6]);
-				str(newTransactionPool.contents[i].shopping_cart.contents[j].m_quantity,t[7]);
-				str(newTransactionPool.contents[i].shopping_cart.contents[j].l_quantity,t[8]);
-				str(newTransactionPool.contents[i].shopping_cart.contents[j].xl_quantity,t[9]);
-				t[10]:=newTransactionPool.contents[i].courier.name;
-				t[11]:=newTransactionPool.contents[i].courier.type_of_service;
-				t[12]:=newTransactionPool.contents[i].courier.destination_city;
-				str(newTransactionPool.contents[i].courier.price_per_kg:0:2,t[13]);
-				str(newTransactionPool.contents[i].courier.delivery_time,t[14]);
-				t[15]:=dateToString(newTransactionPool.contents[i].delivery_date);
-				writeln(selectedDatabase,arrayToString(t,15));
-			end;
+			t[1]:=newTransactionPool.contents[i].shopping_cart_item.clothes.name;
+			t[2]:=newTransactionPool.contents[i].shopping_cart_item.clothes.colour;
+			str(newTransactionPool.contents[i].shopping_cart_item.clothes.weight:0:2,t[3]);
+			t[4]:=newTransactionPool.contents[i].shopping_cart_item.clothes.material;
+			str(newTransactionPool.contents[i].shopping_cart_item.clothes.price:0:2,t[5]);
+			str(newTransactionPool.contents[i].shopping_cart_item.s_quantity,t[6]);
+			str(newTransactionPool.contents[i].shopping_cart_item.m_quantity,t[7]);
+			str(newTransactionPool.contents[i].shopping_cart_item.l_quantity,t[8]);
+			str(newTransactionPool.contents[i].shopping_cart_item.xl_quantity,t[9]);
+			t[10]:=newTransactionPool.contents[i].courier.name;
+			t[11]:=newTransactionPool.contents[i].courier.type_of_service;
+			t[12]:=newTransactionPool.contents[i].courier.destination_city;
+			str(newTransactionPool.contents[i].courier.price_per_kg:0:2,t[13]);
+			str(newTransactionPool.contents[i].courier.delivery_time,t[14]);
+			t[15]:=dateToString(newTransactionPool.contents[i].delivery_date);
+			writeln(selectedDatabase,arrayToString(t,15));
 		end;
 		close(selectedDatabase);
 		writeln('OK');
