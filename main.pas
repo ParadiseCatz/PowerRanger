@@ -30,6 +30,21 @@ begin
 	end;
 end;
 
+procedure sortPrice();
+begin
+	warehouseSortPrice(mainWarehouse);
+
+end;
+
+procedure showDetailProduct();
+var
+	namaBaju:string;
+begin
+	//minta user nama
+	write('Masukan nama Baju: '); readln(namaBaju);
+	writeClothesName( cariBaju(mainWarehouse, namaBaju) );
+end;
+
 procedure saveAll();
 begin
 	saveWarehouse(mainWarehouse,DATABASE_CLOTHES_FILENAME);
@@ -64,11 +79,11 @@ begin
 	else 
 	if (uc = 'showPopulars') then showPopulars()
 	else 
-	if (uc = 'showDetailProduct') then 
+	if (uc = 'showDetailProduct') then showDetailProduct();
 	else 
 	if (uc = 'searchClothesByKeyword') then 
 	else 
-	if (uc = 'sortPrice') then 
+	if (uc = 'sortPrice') then sortPrice();
 	else 
 	if (uc = 'filterClothes') then 
 	else 
@@ -107,7 +122,7 @@ end;
 begin
 	userGreeter();
 	loadAll();
-	saveAll();
+	// saveAll();
 	repeat
 		repeat
 			prompt();

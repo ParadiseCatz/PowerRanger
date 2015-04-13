@@ -25,6 +25,10 @@ interface
 
 	function warehouseGetPopulars(warehouseSource:Warehouse):Warehouse;
 
+	procedure warehouseSortPrice(var warehouseSource:Warehouse);
+
+	function cariBaju(warehouseSource:Warehouse):Clothes;
+
 implementation
 	function warehouseCons(
 		c : array of WarehouseItem;
@@ -101,5 +105,21 @@ implementation
 		if (third <> -1) then
 			warehouseGetPopulars.size := 3;
 	end;
+
+	procedure warehouseSortPrice(var warehouseSource:Warehouse);
+	begin
+
+	end;
+
+	function cariBaju(warehouseSource:Warehouse; namaBaju:string):Clothes;
+	var
+		i:longint;
+	begin
+		for i:=1 to warehouseSource.size do
+		begin
+			if (warehouseSource.contents[i].clothes.name = namaBaju) then
+		end;
+	end;
+
 
 end.
