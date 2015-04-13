@@ -17,6 +17,19 @@ begin
 	mainTransactionPool := loadTransaction(DATABASE_TRANSACTION_FILENAME);
 end;
 
+procedure showPopulars();
+var
+	popularWarehouse:Warehouse;
+	i:longint;
+begin
+	popularWarehouse := warehouseGetPopulars(mainWarehouse);
+	for i:=1 to popularWarehouse.size do
+	begin
+		write(i,'. ');
+		writeWarehouseItem(popularWarehouse.contents[i]);
+	end;
+end;
+
 procedure saveAll();
 begin
 	saveWarehouse(mainWarehouse,DATABASE_CLOTHES_FILENAME);
@@ -39,7 +52,7 @@ procedure branchBasedOn(uc:string);
 begin
 	if (uc = 'load') then loadAll()
 	else 
-	if (uc = 'showPopulars') then 
+	if (uc = 'showPopulars') then showPopulars()
 	else 
 	if (uc = 'showDetailProduct') then 
 	else 
