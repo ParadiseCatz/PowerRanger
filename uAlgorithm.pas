@@ -1,7 +1,7 @@
 unit uAlgorithm;
 
 interface
-	uses uDate,uTransaction;
+	uses uDate,uTransaction,uWarehouseItem;
 
 	function max(a, b:longint):longint;
 	function max(a, b:real):real;
@@ -12,6 +12,7 @@ interface
 	procedure swap(var a,b:longint);
 	procedure swap(var a,b:real);
 	procedure swap(var a,b:Transaction);
+	procedure swap(var a,b:WarehouseItem);
 	
 implementation
 	function max(a, b:longint):longint;
@@ -117,6 +118,15 @@ implementation
 	procedure swap(var a,b:Transaction);
 	var
 		temp:Transaction;
+	begin
+		temp:=b;
+		b:=a;
+		a:=temp;
+	end;
+
+	procedure swap(var a,b:WarehouseItem);
+	var
+		temp:WarehouseItem;
 	begin
 		temp:=b;
 		b:=a;

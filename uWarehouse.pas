@@ -25,6 +25,8 @@ interface
 
 	function warehouseGetPopulars(warehouseSource:Warehouse):Warehouse;
 
+	procedure sortByPrice(var whs:Warehouse);
+
 implementation
 	function warehouseCons(
 		c : array of WarehouseItem;
@@ -100,6 +102,22 @@ implementation
 			warehouseGetPopulars.size := 2;
 		if (third <> -1) then
 			warehouseGetPopulars.size := 3;
+	end;
+
+	procedure sortByPrice(var whs:Warehouse);
+	var
+		i,j:integer;
+	begin
+		for i:=1 to whs.size do
+		begin
+			for j:=i+1 to whs.size do
+			begin
+				if (whs.contents[i].clothes.price > whs.contents[j].clothes.price) then
+				begin
+					swap(whs.contents[j-1],whs.contents[j]);
+				end;
+			end;
+		end;
 	end;
 
 end.
