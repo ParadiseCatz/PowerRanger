@@ -1,17 +1,17 @@
 unit uTransaction;
 
 interface
-	uses uShoppingCart, uCourier, uDate;
+	uses uShoppingCart, uShoppingCartItem, uCourier, uDate;
 	
 	type
 		Transaction = record
-			shopping_cart : ShoppingCart;
+			shopping_cart_item : ShoppingCartItem;
 			courier : Courier;
 			delivery_date : Date;
 		end;
 
 	function transactionCons(
-		sc : ShoppingCart;
+		sci : ShoppingCartItem;
 		c : Courier;
 		dt : Date
 	):Transaction;
@@ -19,12 +19,12 @@ interface
 
 implementation
 	function transactionCons(
-		sc : ShoppingCart;
+		sci : ShoppingCartItem;
 		c : Courier;
 		dt : Date
 	):Transaction;
 	begin
-		transactionCons.shopping_cart := sc;
+		transactionCons.shopping_cart_item := sci;
 		transactionCons.courier := c;
 		transactionCons.delivery_date := dt;
 	end;

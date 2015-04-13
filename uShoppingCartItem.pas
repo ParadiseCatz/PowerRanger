@@ -20,9 +20,9 @@ interface
 		xl : integer
 	):ShoppingCartItem;
 
-	function totalItemQuantity(sci : ShoppingCartItem):longint;
-	function totalItemWeight(sci : ShoppingCartItem):real;
-	function totalItemPrice(sci:ShoppingCartItem):real;
+	function shoppingCartItemTotalQuantity(sci : ShoppingCartItem):longint;
+	function shoppingCartItemTotalWeight(sci : ShoppingCartItem):real;
+	function shoppingCartItemTotalPrice(sci:ShoppingCartItem):real;
 
 implementation
 	function shoppingCartItemCons(
@@ -40,18 +40,18 @@ implementation
 		shoppingCartItemCons.xl_quantity := xl;
 	end;
 
-	function totalItemQuantity(sci:ShoppingCartItem):longint;
+	function shoppingCartItemTotalQuantity(sci:ShoppingCartItem):longint;
 	begin
-		totalItemQuantity:=sci.s_quantity+sci.m_quantity+sci.l_quantity+sci.xl_quantity;
+		shoppingCartItemTotalQuantity:=sci.s_quantity+sci.m_quantity+sci.l_quantity+sci.xl_quantity;
 	end;
 
-	function totalItemWeight(sci:ShoppingCartItem):real;
+	function shoppingCartItemTotalWeight(sci:ShoppingCartItem):real;
 	begin
-		totalItemWeight:=totalItemQuantity(sci)*sci.clothes.weight;
+		shoppingCartItemTotalWeight:=shoppingCartItemTotalQuantity(sci)*sci.clothes.weight;
 	end;
 
-	function totalItemPrice(sci:ShoppingCartItem):real;
+	function shoppingCartItemTotalPrice(sci:ShoppingCartItem):real;
 	begin
-		totalItemPrice:=totalItemQuantity(sci)*sci.clothes.price;
+		shoppingCartItemTotalPrice:=shoppingCartItemTotalQuantity(sci)*sci.clothes.price;
 	end;
 end.

@@ -14,10 +14,10 @@ interface
 		sz : longint
 	):ShoppingCart;
 
-	function totalShoppingCartWeight(sc : ShoppingCart):real;
-	function totalShoppingCartPrice(sc : ShoppingCart):real;
+	function shoppingCartTotalWeight(sc : ShoppingCart):real;
+	function shoppingCartTotalPrice(sc : ShoppingCart):real;
 
-	procedure clearShoppingCart(var sc : ShoppingCart);
+	procedure shoppingCartClear(var sc : ShoppingCart);
 
 implementation
 	function shoppingCartCons(
@@ -29,7 +29,7 @@ implementation
 		shoppingCartCons.size := sz;
 	end;
 
-	function totalShoppingCartWeight(sc : ShoppingCart):real;
+	function shoppingCartTotalWeight(sc : ShoppingCart):real;
 	var
 		returnWeight:real;
 		i:integer;
@@ -37,13 +37,13 @@ implementation
 		returnWeight:=0;
 		for i:=1 to sc.size do
 		begin
-			returnWeight:=returnWeight+totalItemWeight(sc.contents[i]);
+			returnWeight:=returnWeight+shoppingCartItemTotalWeight(sc.contents[i]);
 		end;
 
-		totalShoppingCartWeight:=returnWeight;
+		shoppingCartTotalWeight:=returnWeight;
 	end;
 
-	function totalShoppingCartPrice(sc : ShoppingCart):real;
+	function shoppingCartTotalPrice(sc : ShoppingCart):real;
 	var
 		returnPrice:real;
 		i:integer;
@@ -51,13 +51,13 @@ implementation
 		returnPrice:=0;
 		for i:=1 to sc.size do
 		begin
-			returnPrice:=returnPrice+totalItemPrice(sc.contents[i]);
+			returnPrice:=returnPrice+shoppingCartItemTotalPrice(sc.contents[i]);
 		end;
 
-		totalShoppingCartPrice:=returnPrice;
+		shoppingCartTotalPrice:=returnPrice;
 	end;
 
-	procedure clearShoppingCart(var sc : ShoppingCart);
+	procedure shoppingCartClear(var sc : ShoppingCart);
 	begin
 		sc.size:=0;
 	end;
