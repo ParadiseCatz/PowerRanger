@@ -39,6 +39,7 @@ begin
 end;
 
 procedure prompt();
+
 begin
 	write('> ');
 end;
@@ -46,6 +47,15 @@ end;
 procedure showExpedition(cp:CourierPool); //F8
 begin
 	writeCourierPool(cp);
+end;
+
+procedure help();
+var
+	i:longint;
+begin
+	writeln('Command Available:');
+	for i:=1 to COMMAND_NUMBER do
+		writeln('- ', COMMAND_LIST[i]);
 end;
 
 procedure branchBasedOn(uc:string);
@@ -82,7 +92,7 @@ begin
 	else 
 	if (uc = 'retur') then 
 	else 
-	if (uc = 'help') then 
+	if (uc = 'help') then help();
 end;
 
 procedure userGreeter();
