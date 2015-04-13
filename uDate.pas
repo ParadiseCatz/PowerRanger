@@ -17,7 +17,7 @@ interface
 
 	function isKabisat(y:integer):boolean;
 	function dayInMonth(m:integer;y:integer):integer;
-	function addDate(start_day:Date;add:integer):Date;
+	function addDate(startDay:Date;add:integer):Date;
 
 implementation
 	function dateCons(
