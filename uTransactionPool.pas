@@ -14,7 +14,7 @@ interface
 		sz : longint
 	):TransactionPool;
 	
-	procedure sortByDate(tp : TransactionPool);
+	procedure sortByDate(var tp : TransactionPool);
 
 implementation
 	function transactionPoolCons(
@@ -26,7 +26,7 @@ implementation
 		transactionPoolCons.size := sz;
 	end;
 
-	procedure sortByDate(tp : TransactionPool);
+	procedure sortByDate(var tp : TransactionPool);
 	var
 		i,j:integer;
 	begin
