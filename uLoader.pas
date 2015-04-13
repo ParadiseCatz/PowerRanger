@@ -44,6 +44,7 @@ var
 		end;
 		returnObject.size := size;
 		loadWarehouse := returnObject;
+		close(selectedDatabase);
 		writeln('OK');
 	end;
 
@@ -68,6 +69,7 @@ var
 		end;
 		returnObject.size := size;
 		loadCourier := returnObject;
+		close(selectedDatabase);
 		writeln('OK');
 	end;
 
@@ -98,6 +100,7 @@ var
 		end;
 		returnObject.size := size;
 		loadShoppingCart := returnObject;
+		close(selectedDatabase);
 		writeln('OK');
 	end;
 
@@ -140,6 +143,7 @@ var
 		end;
 		returnObject.size := size;
 		loadTransaction := returnObject;
+		close(selectedDatabase);
 		writeln('OK');
 	end;
 end.
