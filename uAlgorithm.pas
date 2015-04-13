@@ -1,6 +1,7 @@
 unit uAlgorithm;
 
 interface
+	uses uDate,uTransaction;
 
 	function max(a, b:longint):longint;
 	function max(a, b:real):real;
@@ -8,6 +9,9 @@ interface
 	function min(a, b:real):real;
 	function stringMatching(text, pattern:string):boolean;
 	function editDistance(s, t: string): longint;
+	procedure swap(var a,b:longint);
+	procedure swap(var a,b:real);
+	procedure swap(var a,b:Transaction);
 	
 implementation
 	function max(a, b:longint):longint;
@@ -90,5 +94,32 @@ implementation
 			else
 				d[i,j] := min(d[i-1,j] + 1, min(d[i,j-1] + 1, d[i-1,j-1] + 1));
 	editDistance := d[m,n];
+	end;
+
+	procedure swap(var a,b:longint);
+	var
+		temp:longint;
+	begin
+		temp:=b;
+		b:=a;
+		a:=temp;
+	end;
+
+	procedure swap(var a,b:real);
+	var
+		temp:real;
+	begin
+		temp:=b;
+		b:=a;
+		a:=temp;
+	end;
+
+	procedure swap(var a,b:Transaction);
+	var
+		temp:Transaction;
+	begin
+		temp:=b;
+		b:=a;
+		a:=temp;
 	end;
 end.
