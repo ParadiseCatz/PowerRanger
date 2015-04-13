@@ -71,4 +71,24 @@ implementation
 		end;
 		addDate:=d;
 	end;
+
+	function compareDate(d1,d2:Date):boolean;
+	var
+		returnVal:boolean;
+	begin
+		if (d1.year<>d2.year) then
+		begin
+			returnVal:=(d1.year>d2.year);
+		end
+		else if (d1.month<>d2.month) then
+		begin
+			returnVal:=(d1.month>d2.month);
+		end
+		else
+		begin
+			returnVal:=(d1.day>d2.day);
+		end;
+
+		compareDate:=returnVal;
+	end;
 end.
