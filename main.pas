@@ -30,6 +30,17 @@ begin
 	end;
 end;
 
+procedure sortPrice();
+var
+	i:longint;
+begin
+	sortByPrice(mainWarehouse);
+	for i:=1 to mainWarehouse.size do
+	begin
+		writeWarehouseItem(mainWarehouse.contents[i]);
+	end;
+end;
+
 procedure saveAll();
 begin
 	saveWarehouse(mainWarehouse,DATABASE_CLOTHES_FILENAME);
@@ -68,7 +79,7 @@ begin
 	else 
 	if (uc = 'searchClothesByKeyword') then 
 	else 
-	if (uc = 'sortPrice') then 
+	if (uc = 'sortPrice') then sortPrice()
 	else 
 	if (uc = 'filterClothes') then 
 	else 

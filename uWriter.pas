@@ -10,6 +10,7 @@ interface
 	procedure writeClothesWeight(c:Clothes);
 	procedure writeClothesMaterial(c:Clothes);
 	procedure writeClothesPrice(c:Clothes);
+	procedure writeClothes(c:Clothes);
 
 	procedure writeDate(d:Date);
 	
@@ -35,12 +36,12 @@ implementation
 
 	procedure writeClothesCategory(c:Clothes);
 	begin
-		writeln(c.category);
+		writeln('Category: ',c.category);
 	end;
 
 	procedure writeClothesGender(c:Clothes);
 	begin
-		writeln(c.gender);
+		writeln('Gender: ',c.gender);
 	end;
 
 	procedure writeClothesColour(c:Clothes);
@@ -50,17 +51,28 @@ implementation
 
 	procedure writeClothesWeight(c:Clothes);
 	begin
-		writeln(c.weight);
+		writeln('Weight: ',c.weight);
 	end;
 
 	procedure writeClothesMaterial(c:Clothes);
 	begin
-		writeln(c.material);
+		writeln('Material: ',c.material);
 	end;
 
 	procedure writeClothesPrice(c:Clothes);
 	begin
 		writeln('Rp ',c.price:0:0);
+	end;
+
+	procedure writeClothes(c:Clothes);
+	begin
+		writeClothesName(c);
+		writeClothesCategory(c);
+		writeClothesGender(c);
+		writeClothesColour(c);
+		writeClothesWeight(c);
+		writeClothesMaterial(c);
+		writeClothesPrice(c);
 	end;
 
 	procedure writeDate(d:Date);
