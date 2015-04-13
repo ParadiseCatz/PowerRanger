@@ -1,7 +1,7 @@
 unit uWarehouse;
 
 interface
-	uses uWarehouseItem, uClothes, uConfig;
+	uses uWarehouseItem, uClothes, uConfig, uAlgorithm;
 	
 	type
 		Warehouse = record
@@ -14,7 +14,7 @@ interface
 		sz : longint
 	):Warehouse;
 
-	function find(
+	function warehouseFind(
 		name : String;
 		colour : String;
 		weight : real;
@@ -23,6 +23,7 @@ interface
 		warehouseSource : Warehouse
 	):Clothes;
 
+	function warehouseGetPopulars(warehouseSource:Warehouse):Warehouse;
 
 implementation
 	function warehouseCons(
@@ -34,7 +35,7 @@ implementation
 		warehouseCons.size := sz;
 	end;
 
-	function find(
+	function warehouseFind(
 		name : String;
 		colour : String;
 		weight : real;
@@ -52,10 +53,53 @@ implementation
 			and	(warehouseSource.contents[i].clothes.material = material)
 			and	(warehouseSource.contents[i].clothes.price = price)) then
 			begin
-				find := warehouseSource.contents[i].clothes;
+				warehouseFind := warehouseSource.contents[i].clothes;
 				break;
 			end;
 		end;
+	end;
+
+	function warehouseGetPopulars(warehouseSource:Warehouse):Warehouse;
+	var
+		i, first, second, third:longint;
+	begin
+		first:=-1; second:=-1; third:=-1;
+		for i:=1 to warehouseSource.size do
+		begin
+			if (warehouseSource.contents[i].sold_quantity > first) then
+			begin
+				third := second;
+				warehouseGetPopulars.contents[3] := warehouseGetPopulars.contents[2];
+				second := first;
+				warehouseGetPopulars.contents[2] := warehouseGetPopulars.contents[1];
+				first := warehouseSource.contents[i].sold_quantity;
+				warehouseGetPopulars.contents[1] := warehouseSource.contents[i];
+			end
+			else
+			begin
+				if (warehouseSource.contents[i].sold_quantity > second) then
+				begin
+					third := second;
+					warehouseGetPopulars.contents[3] := warehouseGetPopulars.contents[2];
+					second := warehouseSource.contents[i].sold_quantity;
+					warehouseGetPopulars.contents[2] := warehouseSource.contents[i];
+				end
+				else
+				begin
+					if (warehouseSource.contents[i].sold_quantity > third) then
+					begin
+						third := warehouseSource.contents[i].sold_quantity;
+						warehouseGetPopulars.contents[3] := warehouseSource.contents[i];
+					end;
+				end;
+			end;
+		end;
+		if (first <> -1) then
+			warehouseGetPopulars.size := 1;
+		if (second <> -1) then
+			warehouseGetPopulars.size := 2;
+		if (third <> -1) then
+			warehouseGetPopulars.size := 3;
 	end;
 
 end.
