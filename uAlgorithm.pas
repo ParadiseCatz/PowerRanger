@@ -7,7 +7,8 @@ interface
 	function min(a, b:longint):longint;
 	function min(a, b:real):real;
 	function stringMatching(text, pattern:string):boolean;
-
+	function editDistance(s, t: string): longint;
+	
 implementation
 	function max(a, b:longint):longint;
 	begin
