@@ -49,11 +49,11 @@ implementation
 		dayInMonth:=returnDay;
 	end;
 
-	function addDate(start_day:Date;add:integer):Date;
+	function addDate(startDay:Date;add:integer):Date;
 	var
 		d:Date;
 	begin
-		d:=start_day;
+		d:=startDay;
 		d.day:=d.day+add;
 
 		while (d.day>dayInMonth(d.month,d.year)) do
