@@ -1,7 +1,7 @@
 unit uTransaction;
 
 interface
-	uses uShoppingCart, uShoppingCartItem, uCourier, uDate;
+	uses uShoppingCartItem, uCourier, uDate;
 	
 	type
 		Transaction = record
