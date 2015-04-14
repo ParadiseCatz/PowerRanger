@@ -1,7 +1,7 @@
 unit uShoppingCart;
 
 interface
-	uses uShoppingCartItem,uConfig;
+	uses uShoppingCartItem,uConfig,uAlgorithm;
 	
 	type
 		ShoppingCart = record
@@ -19,6 +19,7 @@ interface
 
 	procedure shoppingCartClear(var sc : ShoppingCart);
 	procedure shoppingCartAdd(sci:ShoppingCartItem; var sc:ShoppingCart);
+	procedure shoppingCartRemove(sci:ShoppingCartItem; var sc:ShoppingCart);
 
 implementation
 	function shoppingCartCons(
@@ -67,5 +68,19 @@ implementation
 	begin
 		sc.size := sc.size + 1;
 		sc.contents[sc.size] := sci;
+	end;
+
+	procedure shoppingCartRemove(sci:ShoppingCartItem; var sc:ShoppingCart);
+	var i:longint;
+	begin
+		for i:=1 to sc.size do
+		begin
+			if (sc.contents[i].clothes.name = sci.clothes.name) then
+			begin
+				swap(sc.contents[i], sc.contents[sc.size]);
+				break;
+			end;
+		end;
+		sc.size := sc.size - 1;
 	end;
 end.
