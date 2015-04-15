@@ -98,7 +98,6 @@ begin
 	else
 	begin
 		sci.clothes:=result;
-		readQuantity(sci);
 		shoppingCartRemove(sci, mainShoppingCart);
 		writeln('Item Removed from Shopping Cart.');
 	end;
