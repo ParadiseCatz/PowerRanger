@@ -1,7 +1,7 @@
 unit uWriter;
 
 interface
-	uses uClothes,uShoppingCart,uShoppingCartItem,uWarehouse,uWarehouseItem,uCourier,uCourierPool,uDate;
+	uses uClothes,uShoppingCart,uShoppingCartItem,uWarehouse,uWarehouseItem,uCourier,uCourierPool,uDate,uTransaction,uTransactionPool;
 
 	procedure writeClothesName(c:Clothes);
 	procedure writeClothesCategory(c:Clothes);
@@ -15,6 +15,7 @@ interface
 	procedure writeDate(d:Date);
 	
 	procedure writeWarehouseItem(wi:WarehouseItem);
+	procedure writeWarehouse(w:Warehouse);
 	procedure writeItemStock(wi:WarehouseItem);
 	procedure writeSoldQuantity(wi:WarehouseItem);
 
@@ -27,6 +28,10 @@ interface
 	procedure writeShoppingCartTotalWeight(sc:ShoppingCart);
 	procedure writeShoppingCartTotalPrice(sc:ShoppingCart);
 	procedure writeShoppingCartItems(sc:ShoppingCart);
+	procedure writeShoppingCartItem(sc:ShoppingCartItem);
+
+	procedure writeTransaction(t:Transaction);
+	procedure writeTransactionPool(tp:TransactionPool);
 
 implementation
 	procedure writeClothesName(c:Clothes);
@@ -87,6 +92,17 @@ implementation
 		writeItemStock(wi);
 		writeClothesPrice(wi.clothes);
 		writeSoldQuantity(wi);
+	end;
+
+	procedure writeWarehouse(w:Warehouse);
+	var
+		i:longint;
+	begin
+		for i:=1 to w.size do
+		begin
+			writeWarehouseItem(w.contents[i]);
+			writeln;
+		end;
 	end;
 
 	procedure writeItemStock(wi:WarehouseItem);
@@ -181,6 +197,33 @@ implementation
 		writeShoppingCartTotalPrice(sc);
 		writeShoppingCartTotalWeight(sc);
 		writeln;
+	end;
+
+	procedure writeShoppingCartItem(sc:ShoppingCartItem);
+	begin
+		writeClothesName(sc.clothes);
+		writeClothesColour(sc.clothes);
+		writeShoppingCartItemQuantity(sc);
+		writeShoppingCartItemTotalWeight(sc);
+		writeShoppingCartItemTotalPrice(sc);
+	end;
+
+	procedure writeTransaction(t:Transaction);
+	begin
+		writeShoppingCartItem(t.shopping_cart_item);
+		writeCourier(t.courier);
+		write('Delivery Date: '); writeDate(t.delivery_date);
+		writeln;
+	end;
+
+	procedure writeTransactionPool(tp:TransactionPool);
+	var
+		i:longint;
+	begin
+		for i:=1 to tp.size do
+		begin
+			writeTransaction(tp.contents[i]);
+		end;
 	end;
 
 end.

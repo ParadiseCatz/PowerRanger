@@ -1,6 +1,6 @@
 program OnlineShopping;
 
-uses uLoader, uTransactionPool, uShoppingCart, uCourierPool, uWarehouse, uConfig, uSaver, uValidator,uWriter, uClothes, uShoppingCartItem, uReader, uWarehouseItem;
+uses uLoader, uTransactionPool, uShoppingCart, uCourierPool, uWarehouse, uConfig, uSaver, uValidator,uWriter, uClothes, uShoppingCartItem, uReader, uWarehouseItem, uCourier;
 
 var
 	userCommand : string;
@@ -42,14 +42,9 @@ begin
 end;
 
 procedure sortPrice(); //F5
-var
-	i:longint;
 begin
 	sortByPrice(mainWarehouse);
-	for i:=1 to mainWarehouse.size do
-	begin
-		writeWarehouseItem(mainWarehouse.contents[i]);
-	end;
+	writeWarehouse(mainWarehouse);
 end;
 
 procedure saveAll();
@@ -65,9 +60,26 @@ begin
 	write('> ');
 end;
 
-procedure showExpedition(cp:CourierPool); //F8
+procedure filterByPrice(); //F7
+var
+	filteredWarehouse : Warehouse;
 begin
-	writeCourierPool(cp);
+	filteredWarehouse := warehouseFilterByPrice(mainWarehouse);
+	writeln('Highest Price on Store: ');
+	writeWarehouseItem(filteredWarehouse.contents[1]);
+	writeln('Lowest Price on Store: ');
+	writeWarehouseItem(filteredWarehouse.contents[2]);
+end;
+
+procedure showExpedition(); //F8
+var
+	cp:CourierPool;
+begin
+	readCourierByCity(cp, mainCourierPool);
+	if (cp.size <> 0) then
+		writeCourierPool(cp)
+	else
+		writeln('No Courier Available.');
 end;
 
 procedure addToCart(); //F9
@@ -105,6 +117,12 @@ begin
 	end;
 end;
 
+procedure showTransaction(); //F15
+begin
+	sortByDate(mainTransactionPool);
+	writeTransactionPool(mainTransactionPool);
+end;
+
 procedure help();
 var
 	i:longint;
@@ -128,9 +146,9 @@ begin
 	else 
 	if (uc = 'filterClothes') then 
 	else 
-	if (uc = 'filterByPrice') then 
+	if (uc = 'filterByPrice') then filterByPrice()
 	else 
-	if (uc = 'showExpedition') then showExpedition(mainCourierPool)
+	if (uc = 'showExpedition') then showExpedition()
 	else 
 	if (uc = 'addToCart') then addToCart()
 	else 
@@ -144,7 +162,7 @@ begin
 	else 
 	if (uc = 'discountGrosir') then 
 	else 
-	if (uc = 'showTransaction') then 
+	if (uc = 'showTransaction') then showTransaction()
 	else 
 	if (uc = 'retur') then 
 	else 

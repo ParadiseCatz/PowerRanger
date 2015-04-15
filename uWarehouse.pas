@@ -25,6 +25,7 @@ interface
 
 	function warehouseFindByName(name:string; warehouseSource:Warehouse):WarehouseItem;
 	function warehouseGetPopulars(warehouseSource:Warehouse):Warehouse;
+	function warehouseFilterByPrice(w : Warehouse) : Warehouse;
 
 	procedure sortByPrice(var whs:Warehouse);
 	procedure warehouseRemoveStock(sci:ShoppingCartItem; warehouseSource:Warehouse);
@@ -123,6 +124,37 @@ implementation
 		if (third <> -1) then
 			warehouseGetPopulars.size := 3;
 	end;
+
+	function warehouseFilterByPrice(w : Warehouse) : Warehouse;
+	var
+		max:real;
+		min : real;
+		i:longint;
+		begin
+			max := w.contents[1].clothes.price;
+			i := 2;
+			while (i < w.size) do
+				begin
+				if (max <  w.contents[i].clothes.price) then
+					begin
+					max := w.contents[i].clothes.price;
+					warehouseFilterByPrice.contents[1] := w.contents[i];
+					end;
+					i:= i+1;
+				end;
+			min :=  w.contents[1].clothes.price;
+			i := 2;
+			while (i<w.size) do
+				begin
+				if (min > w.contents[i].clothes.price) then
+					begin
+					min := w.contents[i].clothes.price;
+					warehouseFilterByPrice.contents[2] := w.contents[i];
+					end;
+					i := i +1;
+				end;			
+			warehouseFilterByPrice.size := 2;
+		end;
 
 	procedure sortByPrice(var whs:Warehouse);
 	var
