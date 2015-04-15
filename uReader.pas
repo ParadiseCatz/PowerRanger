@@ -1,12 +1,21 @@
 unit uReader;
 
 interface
-	uses uClothes, uWarehouse, uShoppingCartItem;
+	uses uClothes, uWarehouse, uShoppingCartItem, uWarehouseItem;
 
 	procedure readClothesByName(var c:Clothes; ws:Warehouse);
+	procedure readWarehouseByName(var c:WarehouseItem; ws:Warehouse);
 	procedure readQuantity(var sci:ShoppingCartItem);
 implementation
 	procedure readClothesByName(var c:Clothes; ws:Warehouse);
+	var
+		name:string;
+	begin
+		write('Please enter clothes name: '); readln(name);
+		c := warehouseFindByName(name, ws).clothes;
+	end;
+
+	procedure readWarehouseByName(var c:WarehouseItem; ws:Warehouse);
 	var
 		name:string;
 	begin

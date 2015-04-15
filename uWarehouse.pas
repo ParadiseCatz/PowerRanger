@@ -23,7 +23,7 @@ interface
 		warehouseSource : Warehouse
 	):Clothes;
 
-	function warehouseFindByName(name:string; warehouseSource:Warehouse):Clothes;
+	function warehouseFindByName(name:string; warehouseSource:Warehouse):WarehouseItem;
 
 	function warehouseGetPopulars(warehouseSource:Warehouse):Warehouse;
 
@@ -63,18 +63,18 @@ implementation
 		end;
 	end;
 
-	function warehouseFindByName(name:string; warehouseSource:Warehouse):Clothes;
+	function warehouseFindByName(name:string; warehouseSource:Warehouse):WarehouseItem;
 	var 
 		i:longint;
-		dummy:Clothes;
+		dummy:WarehouseItem;
 	begin
-		dummy.name := '#';
+		dummy.clothes.name := '#';
 		warehouseFindByName := dummy;
 		for i:=1 to warehouseSource.size do
 		begin
 			if (warehouseSource.contents[i].clothes.name = name) then
 			begin
-				warehouseFindByName := warehouseSource.contents[i].clothes;
+				warehouseFindByName := warehouseSource.contents[i];
 				break;
 			end;
 		end;
