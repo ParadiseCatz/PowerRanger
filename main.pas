@@ -75,31 +75,33 @@ var
 	result:WarehouseItem;
 	sci:ShoppingCartItem;
 begin
-	readWarehouseByName(result,mainWarehouse);
+	readWarehouseItemByName(result,mainWarehouse);
 	if (result.clothes.name = '#') then
 		writeln('Clothes not found.')
 	else
 	begin
 		sci.clothes:=result.clothes;
 		readQuantity(sci);
-		shoppingCartAdd(sci, mainShoppingCart);
-		writeln('Item Added to Shopping Cart.');
+		if (validAmountFromWarehouse(sci, result)) then
+		begin
+			shoppingCartAdd(sci, mainShoppingCart);
+			warehouseRemoveStock(sci, mainWarehouse);
+		end
+		else
+			writeln('One or more stock amount not enough.');
 	end;
 end;
 
 procedure removeFromCart(); //F10
 var
-	result:WarehouseItem;
-	sci:ShoppingCartItem;
+	result:ShoppingCartItem;
 begin
-	readWarehouseByName(result,mainWarehouse);
+	readShoppingCartItemByName(result,mainShoppingCart);
 	if (result.clothes.name = '#') then
 		writeln('Clothes not found.')
 	else
 	begin
-		sci.clothes:=result.clothes;
-		shoppingCartRemove(sci, mainShoppingCart);
-		writeln('Item Removed from Shopping Cart.');
+		shoppingCartRemove(result, mainShoppingCart);
 	end;
 end;
 

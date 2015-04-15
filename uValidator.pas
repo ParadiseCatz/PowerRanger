@@ -1,9 +1,10 @@
 unit uValidator;
 
 interface
-	uses uConfig, uParser, uAlgorithm;
+	uses uConfig, uParser, uAlgorithm, uWarehouseItem, uShoppingCartItem;
 
 	function validCommand(command:string):boolean;
+	function validAmountFromWarehouse(sci:ShoppingCartItem; wi:WarehouseItem):boolean;
 
 implementation
 
@@ -56,5 +57,9 @@ implementation
 		validCommand := found;
 	end;
 
+	function validAmountFromWarehouse(sci:ShoppingCartItem; wi:WarehouseItem):boolean;
+	begin
+		validAmountFromWarehouse := (wi.s_stock <= sci.s_quantity) and (wi.m_stock <= sci.m_quantity) and (wi.l_stock <= sci.l_quantity) and (wi.xl_stock <= sci.xl_quantity);
+	end;
 
 end.

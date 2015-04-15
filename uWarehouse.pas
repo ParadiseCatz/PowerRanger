@@ -1,7 +1,7 @@
 unit uWarehouse;
 
 interface
-	uses uWarehouseItem, uClothes, uConfig, uAlgorithm;
+	uses uWarehouseItem, uClothes, uConfig, uAlgorithm, uShoppingCartItem;
 	
 	type
 		Warehouse = record
@@ -24,10 +24,11 @@ interface
 	):Clothes;
 
 	function warehouseFindByName(name:string; warehouseSource:Warehouse):WarehouseItem;
-
 	function warehouseGetPopulars(warehouseSource:Warehouse):Warehouse;
 
 	procedure sortByPrice(var whs:Warehouse);
+	procedure warehouseRemoveStock(sci:ShoppingCartItem; warehouseSource:Warehouse);
+	procedure warehouseAddStock(sci:ShoppingCartItem; warehouseSource:Warehouse);
 
 implementation
 	function warehouseCons(
@@ -139,4 +140,35 @@ implementation
 		end;
 	end;
 
+	procedure warehouseRemoveStock(sci:ShoppingCartItem; warehouseSource:Warehouse);
+	var i:longint;
+	begin
+		for i:=1 to warehouseSource.size do
+		begin
+			if (sci.clothes.name = warehouseSource.contents[i].clothes.name) then
+			begin
+				warehouseSource.contents[i].s_stock := warehouseSource.contents[i].s_stock - sci.s_quantity;
+				warehouseSource.contents[i].m_stock := warehouseSource.contents[i].m_stock - sci.m_quantity;
+				warehouseSource.contents[i].l_stock := warehouseSource.contents[i].l_stock - sci.l_quantity;
+				warehouseSource.contents[i].xl_stock := warehouseSource.contents[i].xl_stock - sci.xl_quantity;
+				break;
+			end;
+		end;
+	end;
+
+	procedure warehouseAddStock(sci:ShoppingCartItem; warehouseSource:Warehouse);
+	var i:longint;
+	begin
+		for i:=1 to warehouseSource.size do
+		begin
+			if (sci.clothes.name = warehouseSource.contents[i].clothes.name) then
+			begin
+				warehouseSource.contents[i].s_stock := warehouseSource.contents[i].s_stock + sci.s_quantity;
+				warehouseSource.contents[i].m_stock := warehouseSource.contents[i].m_stock + sci.m_quantity;
+				warehouseSource.contents[i].l_stock := warehouseSource.contents[i].l_stock + sci.l_quantity;
+				warehouseSource.contents[i].xl_stock := warehouseSource.contents[i].xl_stock + sci.xl_quantity;
+				break;
+			end;
+		end;
+	end;
 end.

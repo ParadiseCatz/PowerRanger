@@ -14,6 +14,8 @@ interface
 		sz : longint
 	):ShoppingCart;
 
+	function shoppingCartFindByName(name:string; sc:ShoppingCart):ShoppingCartItem;
+
 	function shoppingCartTotalWeight(sc : ShoppingCart):real;
 	function shoppingCartTotalPrice(sc : ShoppingCart):real;
 
@@ -29,6 +31,23 @@ implementation
 	begin
 		shoppingCartCons.contents := c;
 		shoppingCartCons.size := sz;
+	end;
+
+	function shoppingCartFindByName(name:string; sc:ShoppingCart):ShoppingCartItem;
+	var 
+		i:longint;
+		dummy:ShoppingCartItem;
+	begin
+		dummy.clothes.name := '#';
+		shoppingCartFindByName := dummy;
+		for i:=1 to sc.size do
+		begin
+			if (sc.contents[i].clothes.name = name) then
+			begin
+				shoppingCartFindByName := sc.contents[i];
+				break;
+			end;
+		end;
 	end;
 
 	function shoppingCartTotalWeight(sc : ShoppingCart):real;
@@ -68,6 +87,7 @@ implementation
 	begin
 		sc.size := sc.size + 1;
 		sc.contents[sc.size] := sci;
+		writeln('Item Added to Shopping Cart.');
 	end;
 
 	procedure shoppingCartRemove(sci:ShoppingCartItem; var sc:ShoppingCart);
@@ -82,5 +102,6 @@ implementation
 			end;
 		end;
 		sc.size := sc.size - 1;
+		writeln('Item Removed from Shopping Cart.');
 	end;
 end.
