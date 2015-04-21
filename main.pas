@@ -1,6 +1,6 @@
 program OnlineShopping;
 
-uses uLoader, uTransactionPool, uShoppingCart, uCourierPool, uWarehouse, uConfig, uSaver, uValidator,uWriter, uClothes, uShoppingCartItem, uReader, uWarehouseItem, uCourier;
+uses uLoader, uTransactionPool, uShoppingCart, uCourierPool, uWarehouse, uConfig, uSaver, uValidator,uWriter, uClothes, uShoppingCartItem, uReader, uWarehouseItem, uCourier, uAlgorithm;
 
 var
 	userCommand : string;

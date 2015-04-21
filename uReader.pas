@@ -1,7 +1,7 @@
 unit uReader;
 
 interface
-	uses uClothes, uWarehouse, uShoppingCartItem, uWarehouseItem, uShoppingCart, uCourier, uCourierPool, uDate, uCourier, uParser;
+	uses uClothes, uWarehouse, uShoppingCartItem, uWarehouseItem, uShoppingCart, uCourier, uCourierPool, uDate, uParser;
 
 	procedure readClothesByName(var c:Clothes; ws:Warehouse);
 	procedure readWarehouseItemByName(var c:WarehouseItem; ws:Warehouse);
@@ -58,7 +58,7 @@ implementation
 		d:=stringToDate(s);
 	end;
 
-	procedure readCourier(var co:Courier,var d:Date);
+	procedure readCourier(var co:Courier;var d:Date);
 	begin
 		write('Nama Ekspsedisi : '); readln(co.name);
 		write('Jenis Layanan : '); readln(co.type_of_service);
