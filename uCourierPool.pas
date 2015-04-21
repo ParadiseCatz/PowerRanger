@@ -15,6 +15,7 @@ interface
 	):CourierPool;
 
 	function courierFindByCity(city:string; cp:CourierPool):CourierPool;
+	function courierFind(co:Courier; cp:CourierPool):Courier;
 
 implementation
 	function courierPoolCons(
@@ -36,6 +37,20 @@ implementation
 			begin
 				courierFindByCity.size := courierFindByCity.size + 1;
 				courierFindByCity.contents[courierFindByCity.size] := cp.contents[i];
+			end;
+		end;
+	end;
+
+	function courierFind(co:Courier; cp:CourierPool):Courier;
+	var i:longint;
+	begin
+		for i:=1 to cp.size do
+		begin
+			if (cp.contents[i].name = co.name) and
+			(cp.contents[i].type_of_service = co.type_of_service) and
+			(cp.contents[i].destination_city = co.destination_city) then
+			begin
+				courierFind := cp.contents[i];
 			end;
 		end;
 	end;
