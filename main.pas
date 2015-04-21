@@ -162,6 +162,21 @@ begin
 	end;
 end;
 
+procedure discountGrosir();
+var
+	i : longint;
+	Lprice : array [1..100] of real;
+	Ltotprice : real;
+begin	
+	LtotPrice := 0;
+	for i := 1 to mainShoppingCart.size do
+	begin
+		Lprice[i] := min( (shoppingCartItemTotalQuantity(mainShoppingCart.contents[i]) div 10) * warehouseFindByName(mainShoppingCart.contents[i].clothes.name, mainWarehouse).grosir_discount ,0.5) * shoppingCartItemTotalPrice(mainShoppingCart.contents[i]);
+		LtotPrice := LtotPrice + Lprice [i];
+	end;
+	writeln('Total Diskon Grosir = Rp ', LtotPrice:0:2);
+end;
+
 procedure showTransaction(); //F15
 begin
 	sortByDate(mainTransactionPool);
@@ -218,7 +233,7 @@ begin
 	else 
 	if (uc = 'updateClothes') then 
 	else 
-	if (uc = 'discountGrosir') then 
+	if (uc = 'discountGrosir') then discountGrosir()
 	else 
 	if (uc = 'showTransaction') then showTransaction()
 	else 
