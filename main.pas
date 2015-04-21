@@ -157,6 +157,7 @@ begin
 	else
 	begin
 		shoppingCartRemove(result, mainShoppingCart);
+		warehouseAddStock(result, mainWarehouse);
 	end;
 end;
 
