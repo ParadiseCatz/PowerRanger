@@ -162,7 +162,12 @@ begin
 	end;
 end;
 
-procedure discountGrosir();
+procedure calculatePrice(); //F11
+begin
+	writeShoppingCartItems(mainShoppingCart);
+end;
+
+procedure discountGrosir(); //F14
 var
 	i : longint;
 	Lprice : array [1..100] of real;
@@ -227,7 +232,7 @@ begin
 	else 
 	if (uc = 'removeFromCart') then removeFromCart()
 	else 
-	if (uc = 'calculatePrice') then 
+	if (uc = 'calculatePrice') then calculatePrice()
 	else 
 	if (uc = 'checkout') then 
 	else 
