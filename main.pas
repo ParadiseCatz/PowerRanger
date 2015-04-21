@@ -41,6 +41,29 @@ begin
 		writeClothes(result);
 end;
 
+procedure searchClothesByKeyword(); //F4
+var
+	keynmb,keywnb,keyktb: string ;
+	i , x : integer ;
+begin
+	write('Nama Baju	: ');	readln(keynmb);
+	write('Kategori	: ');    readln(keyktb);
+	write('Warna		: ');	readln(keywnb);
+	x := 0 ;
+	for i := 1 to mainWarehouse.size do
+	begin
+		if stringMatching(mainwarehouse.contents[i].Clothes.name,keynmb) and
+		stringMatching(mainwarehouse.contents[i].Clothes.category,keyktb) and 
+		stringMatching( mainwarehouse.contents[i].Clothes.colour,keywnb) then
+		begin
+				writeWarehouseItem(mainWarehouse.contents[i]);
+				x := 1 ;
+		end; 
+	end;
+	if x = 0 then writeln('Barang tidak ditemukan');
+end;
+
+
 procedure sortPrice(); //F5
 begin
 	sortByPrice(mainWarehouse);
@@ -140,7 +163,7 @@ begin
 	else 
 	if (uc = 'showDetailProduct') then showDetailProduct()
 	else 
-	if (uc = 'searchClothesByKeyword') then 
+	if (uc = 'searchClothesByKeyword') then searchClothesByKeyword()
 	else 
 	if (uc = 'sortPrice') then sortPrice()
 	else 
