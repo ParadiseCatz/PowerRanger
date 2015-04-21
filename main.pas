@@ -123,6 +123,7 @@ procedure addToCart(); //F9
 var
 	result:WarehouseItem;
 	sci:ShoppingCartItem;
+	sciInCart:ShoppingCartItem;
 begin
 	readWarehouseItemByName(result,mainWarehouse);
 	if (result.clothes.name = '#') then
@@ -131,7 +132,14 @@ begin
 	begin
 		sci.clothes:=result.clothes;
 		readQuantity(sci);
-		if (validAmountFromWarehouse(sci, result)) then
+		sciInCart := shoppingCartFindByName(result.clothes.name,mainShoppingCart);
+		if (sciInCart.clothes.name <> '#') then
+		begin
+			shoppingCartAddQuantity(sci,sciInCart);
+		end
+		else
+			sciInCart := sci;
+		if (validAmountFromWarehouse(sciInCart, result)) then
 		begin
 			shoppingCartAdd(sci, mainShoppingCart);
 			warehouseRemoveStock(sci, mainWarehouse);
