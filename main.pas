@@ -172,26 +172,6 @@ begin
 	writeln('OK');
 end;
 
-procedure checkout(); //F12
-var
-	co,courChoice:Courier;
-	d,arrivalDate:Date;
-begin
-	readCourier(co,d);
-	courChoice:=courierFind(co,mainCourierPool);
-	arrivalDate:=addDate(d,courChoice.delivery_time);
-	writeShoppingCartItems(mainShoppingCart);
-	//discount dan tambah harga kurir
-
-	write('Tanggal Sampai : ');writeDate(arrivalDate);
-	writeln;
-
-	updateClothes();
-	//updateTransaction();
-	//empty shopping cart
-
-end;
-
 procedure discountGrosir(); //F14
 var
 	i : longint;
@@ -205,6 +185,27 @@ begin
 		LtotPrice := LtotPrice + Lprice [i];
 	end;
 	writeln('Total Diskon Grosir = Rp ', LtotPrice:0:2);
+end;
+
+procedure checkout(); //F12
+var
+	co,courChoice:Courier;
+	d,arrivalDate:Date;
+begin
+	readCourier(co,d);
+	courChoice:=courierFind(co,mainCourierPool);
+	arrivalDate:=addDate(d,courChoice.delivery_time);
+	writeShoppingCartItems(mainShoppingCart);
+
+	//harga tambah discount dan kurir
+	
+	write('Tanggal Sampai : ');writeDate(arrivalDate);
+	writeln;
+
+	updateClothes();
+	//updateTransaction();
+	//empty shopping cart
+
 end;
 
 procedure showTransaction(); //F15
