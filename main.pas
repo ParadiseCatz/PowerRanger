@@ -83,6 +83,33 @@ begin
 	write('> ');
 end;
 
+procedure filterClothes (); //F6
+var
+	gender , ukuran , jenis , warna : string ;
+	x,i : integer ;
+begin
+	write('Gender   : '); readln(gender);
+	write('Kategori : '); readln(jenis);
+	write('Warna	 : '); readln(warna);
+	write('Ukuran	 : '); readln(ukuran);
+	x := 0 ;
+	for i := 1 to mainWarehouse.size do
+	begin
+		if periksa(mainWarehouse.contents[i].clothes.gender,gender) and 
+		periksa(mainWarehouse.contents[i].clothes.colour,warna) and 
+		periksa(mainWarehouse.contents[i].clothes.category,jenis) and 
+		sedia (i,ukuran,mainWarehouse) then
+		begin
+			x := x  + 1 ;
+			write(x,'. ');
+			writeWarehouseItem(mainWarehouse.contents[i]);	
+		end;
+		
+	end;
+	if x = 0 then writeln('Barang tidak ditemukan');
+	
+end;
+
 procedure filterByPrice(); //F7
 var
 	filteredWarehouse : Warehouse;
@@ -167,7 +194,7 @@ begin
 	else 
 	if (uc = 'sortPrice') then sortPrice()
 	else 
-	if (uc = 'filterClothes') then 
+	if (uc = 'filterClothes') then filterClothes()
 	else 
 	if (uc = 'filterByPrice') then filterByPrice()
 	else 

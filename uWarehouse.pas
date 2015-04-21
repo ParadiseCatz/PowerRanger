@@ -31,6 +31,9 @@ interface
 	procedure warehouseRemoveStock(sci:ShoppingCartItem; warehouseSource:Warehouse);
 	procedure warehouseAddStock(sci:ShoppingCartItem; warehouseSource:Warehouse);
 
+	function periksa ( a , b : string ) : boolean ;
+	function sedia( a : integer ; b : string ; c : warehouse ) : boolean ;
+
 implementation
 	function warehouseCons(
 		c : array of WarehouseItem;
@@ -206,5 +209,43 @@ implementation
 				break;
 			end;
 		end;
+	end;
+
+	function periksa ( a , b : string ): boolean ;
+	begin
+			if ( b = 'semua') or ( b = a ) then
+			begin
+				periksa := true ;
+			end
+			else
+			begin
+				periksa := false ;
+			end;
+	end;
+
+	function sedia ( a : integer ; b : string ; c : warehouse ) : boolean ;
+	var
+		JumlahBarang : integer ; 
+	begin
+		if lowercase(b) = 'semua' then
+		begin
+			sedia := true ;
+		end
+		else
+		begin
+			if (b = 'S') then
+				JumlahBarang := c.contents[a].s_stock
+			else
+			if (b = 'M') then
+				JumlahBarang := c.contents[a].m_stock
+			else
+			if (b = 'L') then
+				JumlahBarang := c.contents[a].l_stock
+			else
+			if (b = 'XL') then
+				JumlahBarang := c.contents[a].xl_stock;
+
+			if (JumlahBarang > 0) then sedia := true else sedia := false ;
+		end;	
 	end;
 end.
