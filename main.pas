@@ -9,7 +9,7 @@ var
 	mainWarehouse : Warehouse;
 	mainCourierPool : CourierPool;
 
-procedure loadAll();
+procedure loadAll(); //F1
 begin
 	mainWarehouse := loadWarehouse(DATABASE_CLOTHES_FILENAME);
 	mainCourierPool := loadCourier(DATABASE_COURIER_FILENAME);
@@ -68,19 +68,6 @@ procedure sortPrice(); //F5
 begin
 	sortByPrice(mainWarehouse);
 	writeWarehouse(mainWarehouse);
-end;
-
-procedure saveAll();
-begin
-	saveWarehouse(mainWarehouse,DATABASE_CLOTHES_FILENAME);
-	saveCourier(mainCourierPool,DATABASE_COURIER_FILENAME);
-	saveShoppingCart(mainShoppingCart,DATABASE_SHOPPING_CART_FILENAME);
-	saveTransaction(mainTransactionPool,DATABASE_TRANSACTION_FILENAME);
-end;
-
-procedure prompt();
-begin
-	write('> ');
 end;
 
 procedure filterClothes (); //F6
@@ -173,6 +160,19 @@ begin
 	writeTransactionPool(mainTransactionPool);
 end;
 
+procedure saveAll();
+begin
+	saveWarehouse(mainWarehouse,DATABASE_CLOTHES_FILENAME);
+	saveCourier(mainCourierPool,DATABASE_COURIER_FILENAME);
+	saveShoppingCart(mainShoppingCart,DATABASE_SHOPPING_CART_FILENAME);
+	saveTransaction(mainTransactionPool,DATABASE_TRANSACTION_FILENAME);
+end;
+
+procedure prompt();
+begin
+	write('> ');
+end;
+
 procedure help();
 var
 	i:longint;
@@ -238,7 +238,7 @@ begin
 			readln(userCommand);
 		until (validCommand(userCommand));
 		branchBasedOn(userCommand);
-	until (userCommand = 'exit');
+	until (userCommand = 'exit'); //F17
 	//saveAll();
 end.
 
