@@ -43,18 +43,16 @@ end;
 
 procedure searchClothesByKeyword(); //F4
 var
-	keynmb,keywnb,keyktb: string ;
+	keywrd: string ;
 	i , x : integer ;
 begin
-	write('Nama Baju	: ');	readln(keynmb);
-	write('Kategori	: ');    readln(keyktb);
-	write('Warna		: ');	readln(keywnb);
+	write('Kata Kunci : ');	readln(keywrd);
 	x := 0 ;
 	for i := 1 to mainWarehouse.size do
 	begin
-		if stringMatching(mainwarehouse.contents[i].Clothes.name,keynmb) and
-		stringMatching(mainwarehouse.contents[i].Clothes.category,keyktb) and 
-		stringMatching( mainwarehouse.contents[i].Clothes.colour,keywnb) then
+		if stringMatching(mainwarehouse.contents[i].Clothes.name,keywrd) or
+		stringMatching(mainwarehouse.contents[i].Clothes.category,keywrd) or
+		stringMatching( mainwarehouse.contents[i].Clothes.colour,keywrd) then
 		begin
 				writeWarehouseItem(mainWarehouse.contents[i]);
 				x := 1 ;
