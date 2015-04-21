@@ -22,6 +22,7 @@ interface
 	procedure shoppingCartClear(var sc : ShoppingCart);
 	procedure shoppingCartAdd(sci:ShoppingCartItem; var sc:ShoppingCart);
 	procedure shoppingCartRemove(sci:ShoppingCartItem; var sc:ShoppingCart);
+	procedure shoppingCartAddQuantity(from:ShoppingCartItem;var target:ShoppingCartItem);
 
 implementation
 	function shoppingCartCons(
@@ -84,9 +85,25 @@ implementation
 	end;
 
 	procedure shoppingCartAdd(sci:ShoppingCartItem; var sc:ShoppingCart);
+	var
+		i:longint;
 	begin
-		sc.size := sc.size + 1;
-		sc.contents[sc.size] := sci;
+		if (shoppingCartFindByName(sci.clothes.name,sc).clothes.name = '#') then
+		begin
+			sc.size := sc.size + 1;
+			sc.contents[sc.size] := sci;
+		end
+		else
+		begin
+			for i:=1 to sc.size do
+			begin
+				if (sc.contents[i].clothes.name = sci.clothes.name) then
+				begin
+					shoppingCartAddQuantity(sci,sc.contents[i]);
+					break;
+				end;
+			end;
+		end;
 		writeln('Item Added to Shopping Cart.');
 	end;
 
@@ -103,5 +120,13 @@ implementation
 		end;
 		sc.size := sc.size - 1;
 		writeln('Item Removed from Shopping Cart.');
+	end;
+
+	procedure shoppingCartAddQuantity(from:ShoppingCartItem;var target:ShoppingCartItem);
+	begin
+		target.s_quantity := target.s_quantity + from.s_quantity;
+		target.m_quantity := target.m_quantity + from.m_quantity;
+		target.l_quantity := target.l_quantity + from.l_quantity;
+		target.xl_quantity := target.xl_quantity + from.xl_quantity;
 	end;
 end.

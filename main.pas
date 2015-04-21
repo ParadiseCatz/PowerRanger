@@ -9,7 +9,7 @@ var
 	mainWarehouse : Warehouse;
 	mainCourierPool : CourierPool;
 
-procedure loadAll();
+procedure loadAll(); //F1
 begin
 	mainWarehouse := loadWarehouse(DATABASE_CLOTHES_FILENAME);
 	mainCourierPool := loadCourier(DATABASE_COURIER_FILENAME);
@@ -68,19 +68,6 @@ begin
 	writeWarehouse(mainWarehouse);
 end;
 
-procedure saveAll();
-begin
-	saveWarehouse(mainWarehouse,DATABASE_CLOTHES_FILENAME);
-	saveCourier(mainCourierPool,DATABASE_COURIER_FILENAME);
-	saveShoppingCart(mainShoppingCart,DATABASE_SHOPPING_CART_FILENAME);
-	saveTransaction(mainTransactionPool,DATABASE_TRANSACTION_FILENAME);
-end;
-
-procedure prompt();
-begin
-	write('> ');
-end;
-
 procedure filterClothes (); //F6
 var
 	gender , ukuran , jenis , warna : string ;
@@ -134,6 +121,7 @@ procedure addToCart(); //F9
 var
 	result:WarehouseItem;
 	sci:ShoppingCartItem;
+	sciInCart:ShoppingCartItem;
 begin
 	readWarehouseItemByName(result,mainWarehouse);
 	if (result.clothes.name = '#') then
@@ -142,7 +130,14 @@ begin
 	begin
 		sci.clothes:=result.clothes;
 		readQuantity(sci);
-		if (validAmountFromWarehouse(sci, result)) then
+		sciInCart := shoppingCartFindByName(result.clothes.name,mainShoppingCart);
+		if (sciInCart.clothes.name <> '#') then
+		begin
+			shoppingCartAddQuantity(sci,sciInCart);
+		end
+		else
+			sciInCart := sci;
+		if (validAmountFromWarehouse(sciInCart, result)) then
 		begin
 			shoppingCartAdd(sci, mainShoppingCart);
 			warehouseRemoveStock(sci, mainWarehouse);
@@ -165,10 +160,43 @@ begin
 	end;
 end;
 
+procedure calculatePrice(); //F11
+begin
+	writeShoppingCartItems(mainShoppingCart);
+end;
+
+procedure discountGrosir(); //F14
+var
+	i : longint;
+	Lprice : array [1..100] of real;
+	Ltotprice : real;
+begin	
+	LtotPrice := 0;
+	for i := 1 to mainShoppingCart.size do
+	begin
+		Lprice[i] := min( (shoppingCartItemTotalQuantity(mainShoppingCart.contents[i]) div 10) * warehouseFindByName(mainShoppingCart.contents[i].clothes.name, mainWarehouse).grosir_discount ,0.5) * shoppingCartItemTotalPrice(mainShoppingCart.contents[i]);
+		LtotPrice := LtotPrice + Lprice [i];
+	end;
+	writeln('Total Diskon Grosir = Rp ', LtotPrice:0:2);
+end;
+
 procedure showTransaction(); //F15
 begin
 	sortByDate(mainTransactionPool);
 	writeTransactionPool(mainTransactionPool);
+end;
+
+procedure saveAll();
+begin
+	saveWarehouse(mainWarehouse,DATABASE_CLOTHES_FILENAME);
+	saveCourier(mainCourierPool,DATABASE_COURIER_FILENAME);
+	saveShoppingCart(mainShoppingCart,DATABASE_SHOPPING_CART_FILENAME);
+	saveTransaction(mainTransactionPool,DATABASE_TRANSACTION_FILENAME);
+end;
+
+procedure prompt();
+begin
+	write('> ');
 end;
 
 procedure help();
@@ -202,13 +230,13 @@ begin
 	else 
 	if (uc = 'removeFromCart') then removeFromCart()
 	else 
-	if (uc = 'calculatePrice') then 
+	if (uc = 'calculatePrice') then calculatePrice()
 	else 
 	if (uc = 'checkout') then 
 	else 
 	if (uc = 'updateClothes') then 
 	else 
-	if (uc = 'discountGrosir') then 
+	if (uc = 'discountGrosir') then discountGrosir()
 	else 
 	if (uc = 'showTransaction') then showTransaction()
 	else 
@@ -236,7 +264,7 @@ begin
 			readln(userCommand);
 		until (validCommand(userCommand));
 		branchBasedOn(userCommand);
-	until (userCommand = 'exit');
+	until (userCommand = 'exit'); //F17
 	//saveAll();
 end.
 
