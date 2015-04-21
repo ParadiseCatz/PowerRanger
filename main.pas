@@ -157,12 +157,19 @@ begin
 	else
 	begin
 		shoppingCartRemove(result, mainShoppingCart);
+		warehouseAddStock(result, mainWarehouse);
 	end;
 end;
 
 procedure calculatePrice(); //F11
 begin
 	writeShoppingCartItems(mainShoppingCart);
+end;
+
+procedure updateClothes(); //F13
+begin
+	write('Updating...');
+	writeln('OK');
 end;
 
 procedure discountGrosir(); //F14
@@ -234,7 +241,7 @@ begin
 	else 
 	if (uc = 'checkout') then 
 	else 
-	if (uc = 'updateClothes') then 
+	if (uc = 'updateClothes') then updateClothes()
 	else 
 	if (uc = 'discountGrosir') then discountGrosir()
 	else 
