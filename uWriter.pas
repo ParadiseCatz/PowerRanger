@@ -3,6 +3,8 @@ unit uWriter;
 interface
 	uses uClothes,uShoppingCart,uShoppingCartItem,uWarehouse,uWarehouseItem,uCourier,uCourierPool,uDate,uTransaction,uTransactionPool;
 
+	procedure writeTab();
+
 	procedure writeClothesName(c:Clothes);
 	procedure writeClothesCategory(c:Clothes);
 	procedure writeClothesGender(c:Clothes);
@@ -34,6 +36,11 @@ interface
 	procedure writeTransactionPool(tp:TransactionPool);
 
 implementation
+	procedure writeTab();
+	begin
+		write('   ');
+	end;
+
 	procedure writeClothesName(c:Clothes);
 	begin
 		writeln(c.name);
@@ -185,10 +192,10 @@ implementation
 	procedure writeShoppingCartItem(sc:ShoppingCartItem);
 	begin
 		writeClothesName(sc.clothes);
-		writeClothesColour(sc.clothes);
-		writeShoppingCartItemQuantity(sc);
-		writeShoppingCartItemTotalWeight(sc);
-		writeShoppingCartItemTotalPrice(sc);
+		writeTab; writeClothesColour(sc.clothes);
+		writeTab; writeShoppingCartItemQuantity(sc);
+		writeTab; writeShoppingCartItemTotalWeight(sc);
+		writeTab; writeShoppingCartItemTotalPrice(sc);
 	end;
 
 	procedure writeShoppingCartItems(sc:ShoppingCart);
@@ -221,5 +228,7 @@ implementation
 			writeTransaction(tp.contents[i]);
 		end;
 	end;
+
+
 
 end.
