@@ -130,31 +130,35 @@ implementation
 		max:real;
 		min : real;
 		i:longint;
+		ret:Warehouse;
+	begin
+		max := w.contents[1].clothes.price;
+		ret.contents[1] := w.contents[1];
+		i := 2;
+		while (i <= w.size) do
 		begin
-			max := w.contents[1].clothes.price;
-			i := 2;
-			while (i < w.size) do
-				begin
-				if (max <  w.contents[i].clothes.price) then
-					begin
-					max := w.contents[i].clothes.price;
-					warehouseFilterByPrice.contents[1] := w.contents[i];
-					end;
-					i:= i+1;
-				end;
-			min :=  w.contents[1].clothes.price;
-			i := 2;
-			while (i<w.size) do
-				begin
-				if (min > w.contents[i].clothes.price) then
-					begin
-					min := w.contents[i].clothes.price;
-					warehouseFilterByPrice.contents[2] := w.contents[i];
-					end;
-					i := i +1;
-				end;			
-			warehouseFilterByPrice.size := 2;
+			if (max <  w.contents[i].clothes.price) then
+			begin
+				max := w.contents[i].clothes.price;
+				ret.contents[1] := w.contents[i];
+			end;
+			i:= i+1;
 		end;
+		min :=  w.contents[1].clothes.price;
+		ret.contents[2] := w.contents[1];
+		i := 2;
+		while (i <= w.size) do
+		begin
+			if (min > w.contents[i].clothes.price) then
+			begin
+				min := w.contents[i].clothes.price;
+				ret.contents[2] := w.contents[i];
+			end;
+			i := i +1;
+		end;			
+		ret.size := 2;
+		warehouseFilterByPrice := ret;
+	end;
 
 	procedure sortByPrice(var whs:Warehouse);
 	var
