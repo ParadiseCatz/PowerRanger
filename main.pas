@@ -166,6 +166,14 @@ begin
 	writeShoppingCartItems(mainShoppingCart);
 end;
 
+procedure checkout(); //F12
+var
+	co:Courier;
+	d:Date;
+begin
+	readCourier(co,d);
+end;
+
 procedure updateClothes(); //F13
 begin
 	write('Updating...');
