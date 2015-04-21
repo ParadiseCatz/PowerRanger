@@ -166,6 +166,12 @@ begin
 	writeShoppingCartItems(mainShoppingCart);
 end;
 
+procedure updateClothes(); //F13
+begin
+	write('Updating...');
+	writeln('OK');
+end;
+
 procedure discountGrosir(); //F14
 var
 	i : longint;
@@ -235,7 +241,7 @@ begin
 	else 
 	if (uc = 'checkout') then 
 	else 
-	if (uc = 'updateClothes') then 
+	if (uc = 'updateClothes') then updateClothes()
 	else 
 	if (uc = 'discountGrosir') then discountGrosir()
 	else 
