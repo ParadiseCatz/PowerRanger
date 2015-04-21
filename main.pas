@@ -1,6 +1,6 @@
 program OnlineShopping;
 
-uses uLoader, uTransactionPool, uShoppingCart, uCourierPool, uWarehouse, uConfig, uSaver, uValidator,uWriter, uClothes, uShoppingCartItem, uReader, uWarehouseItem, uCourier, uAlgorithm;
+uses uDate, uLoader, uTransactionPool, uShoppingCart, uCourierPool, uWarehouse, uConfig, uSaver, uValidator,uWriter, uClothes, uShoppingCartItem, uReader, uWarehouseItem, uCourier, uAlgorithm;
 
 var
 	userCommand : string;
@@ -166,18 +166,30 @@ begin
 	writeShoppingCartItems(mainShoppingCart);
 end;
 
-procedure checkout(); //F12
-var
-	co:Courier;
-	d:Date;
-begin
-	readCourier(co,d);
-end;
-
 procedure updateClothes(); //F13
 begin
 	write('Updating...');
 	writeln('OK');
+end;
+
+procedure checkout(); //F12
+var
+	co,courChoice:Courier;
+	d,arrivalDate:Date;
+begin
+	readCourier(co,d);
+	courChoice:=courierFind(co,mainCourierPool);
+	arrivalDate:=addDate(d,courChoice.delivery_time);
+	writeShoppingCartItems(mainShoppingCart);
+	//discount dan tambah harga kurir
+
+	write('Tanggal Sampai : ');writeDate(arrivalDate);
+	writeln;
+
+	updateClothes();
+	//updateTransaction();
+	//empty shopping cart
+
 end;
 
 procedure discountGrosir(); //F14
@@ -247,7 +259,7 @@ begin
 	else 
 	if (uc = 'calculatePrice') then calculatePrice()
 	else 
-	if (uc = 'checkout') then 
+	if (uc = 'checkout') then checkout()
 	else 
 	if (uc = 'updateClothes') then updateClothes()
 	else 
