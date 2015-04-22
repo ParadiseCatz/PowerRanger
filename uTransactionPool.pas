@@ -15,6 +15,7 @@ interface
 	):TransactionPool;
 	
 	procedure sortByDate(var tp : TransactionPool);
+	procedure addTransaction(sc:ShoppingCart; co:Courier; d:Date; var tp:TransactionPool);
 
 implementation
 	function transactionPoolCons(
