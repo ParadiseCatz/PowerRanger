@@ -44,6 +44,7 @@ implementation
 	function courierFind(co:Courier; cp:CourierPool):Courier;
 	var i:longint;
 	begin
+		courierFind.name := '#';
 		for i:=1 to cp.size do
 		begin
 			if (cp.contents[i].name = co.name) and
