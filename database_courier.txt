@@ -1,2 +1,0 @@
-JNE | YES | Surabaya | 9000.00 | 1
-JNE | NO | Jakarta | 10000.00 | 2
