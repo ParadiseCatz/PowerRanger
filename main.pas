@@ -50,9 +50,9 @@ begin
 	x := 0 ;
 	for i := 1 to mainWarehouse.size do
 	begin
-		if stringMatching(mainwarehouse.contents[i].Clothes.name,keywrd) or
-		stringMatching(mainwarehouse.contents[i].Clothes.category,keywrd) or
-		stringMatching( mainwarehouse.contents[i].Clothes.colour,keywrd) then
+		if stringMatching(mainWarehouse.contents[i].Clothes.name,keywrd) or
+		stringMatching(mainWarehouse.contents[i].Clothes.category,keywrd) or
+		stringMatching(mainWarehouse.contents[i].Clothes.colour,keywrd) then
 		begin
 				writeWarehouseItem(mainWarehouse.contents[i]);
 				x := 1 ;
@@ -227,6 +227,25 @@ procedure showTransaction(); //F15
 begin
 	sortByDate(mainTransactionPool);
 	writeTransactionPool(mainTransactionPool);
+end;
+
+procedure retur(); //F16
+var
+	cl:Clothes;
+	co:Courier;
+	d,dNow:Date;
+begin
+	readClothesByName(cl,mainWarehouse);
+	readCourier(co,d);
+	write('Tanggal hari ini  : ');readDate(dNow);
+	if (dateDifference(d,dNow)) then
+	begin
+		deleteTransaction(cl,co,d,mainTransactionPool);
+	end
+	else
+	begin
+		writeln('Sudah lebih dari 14 hari, barang tidak dapat dikembalikan.');
+	end;
 end;
 
 procedure saveAll();
