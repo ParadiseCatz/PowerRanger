@@ -299,7 +299,7 @@ begin
 	else
 	if (uc = 'showTransaction') then showTransaction()
 	else 
-	if (uc = 'retur') then 
+	if (uc = 'retur') then retur()
 	else 
 	if (uc = 'help') then help();
 end;
@@ -315,8 +315,6 @@ end;
 
 begin
 	userGreeter();
-	loadAll();
-	saveAll();
 	repeat
 		repeat
 			prompt();
@@ -324,6 +322,6 @@ begin
 		until (validCommand(userCommand));
 		branchBasedOn(userCommand);
 	until (userCommand = 'exit'); //F17
-	//saveAll();
+	saveAll();
 end.
 
