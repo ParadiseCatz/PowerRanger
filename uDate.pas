@@ -19,6 +19,7 @@ interface
 	function dayInMonth(m:integer;y:integer):integer;
 	function addDate(startDay:Date;add:integer):Date;
 	function compareDate(d1,d2:Date):boolean;
+	function dateDifference(d1,d2:Date):boolean;
 	function dateIsEqual(d1,d2:Date):boolean;
 
 implementation
@@ -80,18 +81,23 @@ implementation
 	begin
 		if (d1.year<>d2.year) then
 		begin
-			returnVal:=(d1.year>d2.year);
+			returnVal:=(d1.year>=d2.year);
 		end
 		else if (d1.month<>d2.month) then
 		begin
-			returnVal:=(d1.month>d2.month);
+			returnVal:=(d1.month>=d2.month);
 		end
 		else
 		begin
-			returnVal:=(d1.day>d2.day);
+			returnVal:=(d1.day>=d2.day);
 		end;
 
 		compareDate:=returnVal;
+	end;
+
+	function dateDifference(d1,d2:Date):boolean;
+	begin
+		dateDifference:=compareDate(addDate(d1,14),d2);
 	end;
 
 	function dateIsEqual(d1,d2:Date):boolean;
