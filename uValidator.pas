@@ -30,6 +30,7 @@ implementation
 		found : boolean;
 		similarCommand : arString;
 	begin
+		found := false;
 		for i:=1 to COMMAND_NUMBER do
 		begin
 			if (COMMAND_LIST[i] = command) then
@@ -59,7 +60,7 @@ implementation
 
 	function validAmountFromWarehouse(sci:ShoppingCartItem; wi:WarehouseItem):boolean;
 	begin
-		validAmountFromWarehouse := (wi.s_stock <= sci.s_quantity) and (wi.m_stock <= sci.m_quantity) and (wi.l_stock <= sci.l_quantity) and (wi.xl_stock <= sci.xl_quantity);
+		validAmountFromWarehouse := (wi.s_stock >= sci.s_quantity) and (wi.m_stock >= sci.m_quantity) and (wi.l_stock >= sci.l_quantity) and (wi.xl_stock >= sci.xl_quantity);
 	end;
 
 end.

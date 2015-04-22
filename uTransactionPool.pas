@@ -79,6 +79,7 @@ implementation
 		foundAt,i:integer;
 		found:boolean;
 	begin
+		found := false;
 		for i:=1 to tp.size do
 		begin
 			if 	(tp.contents[i].shopping_cart_item.clothes.name=cl.name) and
