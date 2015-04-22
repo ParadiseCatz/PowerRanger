@@ -177,7 +177,7 @@ begin
 	writeln('OK');
 end;
 
-procedure discountGrosir(); //F14
+procedure discountGrosir(var dc:real); //F14
 var
 	i : longint;
 	Lprice : array [1..100] of real;
@@ -190,6 +190,7 @@ begin
 		LtotPrice := LtotPrice + Lprice [i];
 	end;
 	writeln('Total Diskon Grosir = Rp ', LtotPrice:0:2);
+	dc := LtotPrice;
 end;
 
 procedure checkout(); //F12
@@ -197,6 +198,7 @@ var
 	co,courChoice:Courier;
 	d,arrivalDate:Date;
 	courierFee : real;
+	discount : real;
 begin
 	readCourier(co,d);
 	courChoice:=courierFind(co,mainCourierPool);
@@ -209,11 +211,10 @@ begin
 		arrivalDate:=addDate(d,courChoice.delivery_time);
 		writeShoppingCartItems(mainShoppingCart);
 
-		//harga tambah discount dan kurir
+		discountGrosir(discount);
 		courierFee := courChoice.price_per_kg * shoppingCartTotalWeight(mainShoppingCart);
 		write('Biaya Ekspedisi : Rp '); writeln(courierFee:0:2);
-		write('Grand Total : Rp '); writeln(courierFee+shoppingCartTotalPrice(mainShoppingCart):0:2);
-		
+		write('Grand Total : Rp '); writeln(courierFee+shoppingCartTotalPrice(mainShoppingCart)-discount:0:2);
 		write('Tanggal Sampai : ');writeDate(arrivalDate);
 		writeln;
 
@@ -295,11 +296,7 @@ begin
 	if (uc = 'calculatePrice') then calculatePrice()
 	else 
 	if (uc = 'checkout') then checkout()
-	else 
-	if (uc = 'updateClothes') then updateClothes()
-	else 
-	if (uc = 'discountGrosir') then discountGrosir()
-	else 
+	else
 	if (uc = 'showTransaction') then showTransaction()
 	else 
 	if (uc = 'retur') then 
