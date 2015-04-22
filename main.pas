@@ -273,8 +273,6 @@ end;
 
 procedure branchBasedOn(uc:string);
 begin
-	if (uc = 'load') then loadAll()
-	else 
 	if (uc = 'showPopulars') then showPopulars()
 	else 
 	if (uc = 'showDetailProduct') then showDetailProduct()
@@ -315,6 +313,7 @@ end;
 
 begin
 	userGreeter();
+	loadAll();
 	repeat
 		repeat
 			prompt();
