@@ -1,3 +1,9 @@
 JNE | YES | Surabaya | 9000.00 | 1
 JNE | NO | Jakarta | 10000.00 | 2
 JNE | YES | Jakarta | 8000.00 | 1
+FedEx | Kilat | Bandung | 6000.00 | 1
+FedEx | Biasa | Bandung | 8000.00 | 2
+UPS | Lelet | Medan | 11000.00 | 3
+UPS | Cepat | Irian Jaya | 15000.00 | 2
+TIKI | Lemot | Serang | 20000.00 | 4
+TIKI | Cepat | Tangerang | 5000.00 | 1
