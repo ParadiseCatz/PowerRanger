@@ -92,4 +92,9 @@ implementation
 
 		compareDate:=returnVal;
 	end;
+
+	function dateIsEqual(d1,d2:Date):boolean;
+	begin
+		dateIsEqual:=(d1.year=d2.year) and (d1.month=d2.month) and (d1.day=d2.day);
+	end;
 end.
