@@ -30,6 +30,7 @@ interface
 	procedure sortByPrice(var whs:Warehouse);
 	procedure warehouseRemoveStock(sci:ShoppingCartItem; warehouseSource:Warehouse);
 	procedure warehouseAddStock(sci:ShoppingCartItem; warehouseSource:Warehouse);
+	procedure warehouseUpdateSold(sci:ShoppingCartItem; warehouseSource:Warehouse);
 
 	function periksa ( a , b : string ) : boolean ;
 	function sedia( a : integer ; b : string ; c : warehouse ) : boolean ;
@@ -206,6 +207,19 @@ implementation
 				warehouseSource.contents[i].m_stock := warehouseSource.contents[i].m_stock + sci.m_quantity;
 				warehouseSource.contents[i].l_stock := warehouseSource.contents[i].l_stock + sci.l_quantity;
 				warehouseSource.contents[i].xl_stock := warehouseSource.contents[i].xl_stock + sci.xl_quantity;
+				break;
+			end;
+		end;
+	end;
+
+	procedure warehouseUpdateSold(sci:ShoppingCartItem; warehouseSource:Warehouse);
+	var i:longint;
+	begin
+		for i:=1 to warehouseSource.size do
+		begin
+			if (sci.clothes.name = warehouseSource.contents[i].clothes.name) then
+			begin
+				warehouseSource.contents[i].sold_quantity := warehouseSource.contents[i].sold_quantity + sci.s_quantity + sci.m_quantity + sci.l_quantity + sci.xl_quantity;
 				break;
 			end;
 		end;

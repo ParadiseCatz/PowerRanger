@@ -140,7 +140,6 @@ begin
 		if (validAmountFromWarehouse(sciInCart, result)) then
 		begin
 			shoppingCartAdd(sci, mainShoppingCart);
-			warehouseRemoveStock(sci, mainWarehouse);
 		end
 		else
 			writeln('One or more stock amount not enough.');
@@ -157,7 +156,6 @@ begin
 	else
 	begin
 		shoppingCartRemove(result, mainShoppingCart);
-		warehouseAddStock(result, mainWarehouse);
 	end;
 end;
 
@@ -167,8 +165,15 @@ begin
 end;
 
 procedure updateClothes(); //F13
+var
+	i:longint;
 begin
-	write('Updating...');
+	write('Updating Warehouse...');
+	for i:=1 to mainShoppingCart.size do
+	begin
+		warehouseRemoveStock(mainShoppingCart.contents[i], mainWarehouse);
+		warehouseUpdateSold(mainShoppingCart.contents[i], mainWarehouse);
+	end;
 	writeln('OK');
 end;
 
@@ -191,21 +196,31 @@ procedure checkout(); //F12
 var
 	co,courChoice:Courier;
 	d,arrivalDate:Date;
+	courierFee : real;
 begin
 	readCourier(co,d);
 	courChoice:=courierFind(co,mainCourierPool);
-	arrivalDate:=addDate(d,courChoice.delivery_time);
-	writeShoppingCartItems(mainShoppingCart);
+	if (courChoice.name = '#') then
+	begin
+		writeln('Courier not found.');
+	end
+	else
+	begin
+		arrivalDate:=addDate(d,courChoice.delivery_time);
+		writeShoppingCartItems(mainShoppingCart);
 
-	//harga tambah discount dan kurir
-	
-	write('Tanggal Sampai : ');writeDate(arrivalDate);
-	writeln;
+		//harga tambah discount dan kurir
+		courierFee := courChoice.price_per_kg * shoppingCartTotalWeight(mainShoppingCart);
+		write('Biaya Ekspedisi : Rp '); writeln(courierFee:0:2);
+		write('Grand Total : Rp '); writeln(courierFee+shoppingCartTotalPrice(mainShoppingCart):0:2);
+		
+		write('Tanggal Sampai : ');writeDate(arrivalDate);
+		writeln;
 
-	updateClothes();
-	//updateTransaction();
-	//empty shopping cart
-
+		updateClothes();
+		//updateTransaction();
+		//empty shopping cart
+	end;
 end;
 
 procedure showTransaction(); //F15
