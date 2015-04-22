@@ -1,7 +1,7 @@
 unit uTransactionPool;
 
 interface
-	uses uTransaction,uConfig,uAlgorithm,uDate,uCourier,uShoppingCart,uShoppingCartItem;
+	uses uTransaction,uConfig,uAlgorithm,uDate,uCourier,uShoppingCart,uShoppingCartItem,uClothes;
 	
 	type
 		TransactionPool = record
@@ -16,6 +16,7 @@ interface
 	
 	procedure sortByDate(var tp : TransactionPool);
 	procedure addTransaction(sc:ShoppingCart; co:Courier; d:Date; var tp:TransactionPool);
+	procedure deleteTransaction(cl:Clothes; co:Courier; d:Date; var tp:TransactionPool);
 
 implementation
 	function transactionPoolCons(
@@ -70,6 +71,36 @@ implementation
 				tp.size:=tp.size+1;
 				tp.contents[tp.size]:=transactionCons(sc.contents[i],co,d);
 			end;
+		end;
+	end;
+
+	procedure deleteTransaction(cl:Clothes; co:Courier; d:Date; var tp:TransactionPool);
+	var
+		foundAt,i:integer;
+		found:boolean;
+	begin
+		for i:=1 to tp.size do
+		begin
+			if 	(tp.contents[i].shopping_cart_item.clothes.name=cl.name) and
+				(courierIsEqual(tp.contents[i].courier,co)) and
+				(dateIsEqual(tp.contents[i].delivery_date,d)) then
+			begin
+				foundAt:=i;
+				found:=true;
+			end;
+		end;
+
+		if (found) then
+		begin
+			for i:=foundAt+1 to tp.size do
+			begin
+				tp.contents[i-1]:=tp.contents[i];
+			end;
+			tp.size:=tp.size-1;
+		end
+		else
+		begin
+			writeln('Transaksi Tidak Ditemukan.');
 		end;
 	end;
 end.
