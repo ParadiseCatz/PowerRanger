@@ -218,8 +218,8 @@ begin
 		writeln;
 
 		updateClothes();
-		//updateTransaction();
-		//empty shopping cart
+		addTransaction(mainShoppingCart,courChoice,arrivalDate,mainTransactionPool);
+		shoppingCartClear(mainShoppingCart);
 	end;
 end;
 
