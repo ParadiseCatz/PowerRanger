@@ -8,6 +8,7 @@ interface
 	procedure readShoppingCartItemByName(var sci:ShoppingCartItem; sc:ShoppingCart);
 	procedure readQuantity(var sci:ShoppingCartItem);
 	procedure readCourierByCity(var c:CourierPool; cp:CourierPool);
+	procedure readDate(var d:Date);
 	procedure readCourier(var co:Courier; var d:Date);
 
 implementation
