@@ -17,5 +17,5 @@ Giordano V Neck | Kaos | Laki-Laki | Kuning | 0.50 | Cotton | 75000.00 | 20 | 20
 Kemeja Astra | Kemeja | Perempuan | Merah | 0.20 | Cashmere | 80000.00 | 20 | 25 | 15 | 10 | 100 | 15.00
 White Soft Extra | Blouse | Perempuan | White | 0.10 | Spandex | 50000.00 | 10 | 10 | 10 | 10 | 100 | 12.00
 Levi's 504 Rinse | Celana | Pria | Hitam | 0.30 | Jeans | 145000.00 | 12 | 34 | 12 | 5 | 0 | 10.00
-Levi's 504 Rinse | Celana | Pria | Coklat | 0.30 | Jeans | 150000.00 | 15 | 14 | 22 | 25 | 0 | 10.00
-Levi's 504 Rinse | Celana | Pria | Abu-abu | 0.30 | Jeans | 145000.00 | 16 | 17 | 2 | 15 | 0 | 10.00
+Levi's 505 Rinse | Celana | Pria | Coklat | 0.30 | Jeans | 150000.00 | 15 | 14 | 22 | 25 | 0 | 10.00
+Levi's 506 Rinse | Celana | Pria | Abu-abu | 0.30 | Jeans | 145000.00 | 16 | 17 | 2 | 15 | 0 | 10.00
