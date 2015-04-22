@@ -61,7 +61,7 @@ implementation
 
 	procedure readCourier(var co:Courier;var d:Date);
 	begin
-		write('Nama Ekspsedisi : '); readln(co.name);
+		write('Nama Ekspedisi : '); readln(co.name);
 		write('Jenis Layanan : '); readln(co.type_of_service);
 		write('Kota Tujuan : '); readln(co.destination_city);
 		write('Tanggal Kirim : '); readDate(d);
