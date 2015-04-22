@@ -1,0 +1,21 @@
+Blouse Etnik Sasmira | Blouse | Perempuan | Biru | 0.10 | Spandex | 30000.00 | 10 | 15 | 20 | 10 | 100 | 10.00
+Blouse Aragog | Blouse | Perempuan | Biru | 0.10 | Sutra | 50000.00 | 10 | 10 | 15 | 20 | 100 | 10.00
+Blouse Tiara Hati | Blouse | Perempuan | Coklat | 0.20 | Spandex | 60000.00 | 5 | 10 | 10 | 10 | 50 | 5.00
+Blouse Mawar Pelangi | Blouse | Perempuan | Peach | 0.10 | Spandex | 50000.00 | 10 | 15 | 20 | 10 | 70 | 5.00
+Dress Back Swing Leena | Dress | Perempuan | Hitam | 0.10 | Cotton | 75000.00 | 10 | 10 | 10 | 5 | 80 | 10.00
+Dress Lucie Off | Dress | Perempuan | Merah | 0.10 | Cotton | 50000.00 | 20 | 15 | 10 | 10 | 100 | 10.00
+Dress Lucifer | Dress | Perempuan | Kuning | 0.15 | Cotton | 50000.00 | 10 | 10 | 10 | 10 | 100 | 10.00
+Dress Mont Flora | Dress | Perempuan | Grey | 0.10 | Cotton | 60000.00 | 20 | 30 | 5 | 10 | 80 | 20.00
+Dress Print Flower With Half Plaket | Dress | Perempuan | Hitam | 0.20 | Cotton | 229900.00 | 12 | 43 | 12 | 15 | 0 | 10.00
+Dress Mesh Stripe Fit And Flare | Dress | Perempuan | Biru | 0.35 | Polyester | 349000.00 | 12 | 14 | 18 | 3 | 15 | 10.00
+Mellon Verboten Xavier | Kemeja | Laki-Laki | Biru | 0.15 | Cotton | 145000.00 | 23 | 21 | 34 | 21 | 10 | 10.00
+QuincyLabel Denim | Kemeja | Laki-Laki | Biru Muda | 0.20 | Denim | 250000.00 | 13 | 23 | 31 | 12 | 0 | 10.00
+Kemeja Denim Levis | Kemeja | Laki-Laki | Biru | 0.80 | Denim | 80000.00 | 30 | 20 | 5 | 20 | 190 | 15.00
+T-shirt Metal | Kaos | Laki-Laki | Hitam | 0.10 | Cotton | 50000.00 | 20 | 10 | 1 | 10 | 80 | 10.00
+Blouse Original Maluku | Blouse | Perempuan | Merah | 0.15 | Spandex | 50000.00 | 20 | 30 | 15 | 10 | 150 | 10.00
+Giordano V Neck | Kaos | Laki-Laki | Kuning | 0.50 | Cotton | 75000.00 | 20 | 20 | 20 | 20 | 170 | 8.00
+Kemeja Astra | Kemeja | Perempuan | Merah | 0.20 | Cashmere | 80000.00 | 20 | 25 | 15 | 10 | 100 | 15.00
+White Soft Extra | Blouse | Perempuan | White | 0.10 | Spandex | 50000.00 | 10 | 10 | 10 | 10 | 100 | 12.00
+Levi's 504 Rinse | Celana | Pria | Hitam | 0.30 | Jeans | 145000.00 | 12 | 34 | 12 | 5 | 0 | 10.00
+Levi's 505 Rinse | Celana | Pria | Coklat | 0.30 | Jeans | 150000.00 | 15 | 14 | 22 | 25 | 0 | 10.00
+Levi's 506 Rinse | Celana | Pria | Abu-abu | 0.30 | Jeans | 145000.00 | 16 | 17 | 2 | 15 | 0 | 10.00
