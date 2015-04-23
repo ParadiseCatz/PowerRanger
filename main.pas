@@ -1,6 +1,6 @@
 program OnlineShopping;
 
-uses uDate, uLoader, uTransactionPool, uShoppingCart, uCourierPool, uWarehouse, uConfig, uSaver, uValidator,uWriter, uClothes, uShoppingCartItem, uReader, uWarehouseItem, uCourier, uAlgorithm;
+uses uDate, uLoader, uTransactionPool, uShoppingCart, uCourierPool, uWarehouse, uConfig, uSaver, uValidator,uWriter, uClothes, uShoppingCartItem, uReader, uWarehouseItem, uCourier, uAlgorithm, uTransaction;
 
 var
 	userCommand : string;
@@ -8,6 +8,23 @@ var
 	mainShoppingCart : ShoppingCart;
 	mainWarehouse : Warehouse;
 	mainCourierPool : CourierPool;
+
+procedure loadAll(); forward; //F1
+procedure showPopulars(); forward; //F2
+procedure showDetailProduct(); forward; //F3
+procedure searchClothesByKeyword(); forward; //F4
+procedure sortPrice(); forward; //F5
+procedure filterClothes (); forward; //F6
+procedure filterByPrice(); forward; //F7
+procedure showExpedition(); forward; //F8
+procedure addToCart(); forward; //F9
+procedure removeFromCart(); forward; //F10
+procedure calculatePrice(); forward; //F11
+procedure checkout(); forward; //F12
+procedure updateClothes(); //F13
+procedure discountGrosir(var dc:real); forward; //F14
+procedure showTransaction(); forward; //F15
+procedure retur(); forward; //F16
 
 procedure loadAll(); //F1
 begin
@@ -164,35 +181,6 @@ begin
 	writeShoppingCartItems(mainShoppingCart);
 end;
 
-procedure updateClothes(); //F13
-var
-	i:longint;
-begin
-	write('Updating Warehouse...');
-	for i:=1 to mainShoppingCart.size do
-	begin
-		warehouseRemoveStock(mainShoppingCart.contents[i], mainWarehouse);
-		warehouseUpdateSold(mainShoppingCart.contents[i], mainWarehouse);
-	end;
-	writeln('OK');
-end;
-
-procedure discountGrosir(var dc:real); //F14
-var
-	i : longint;
-	Lprice : array [1..100] of real;
-	Ltotprice : real;
-begin	
-	LtotPrice := 0;
-	for i := 1 to mainShoppingCart.size do
-	begin
-		Lprice[i] := min( (shoppingCartItemTotalQuantity(mainShoppingCart.contents[i]) div 10) * warehouseFindByName(mainShoppingCart.contents[i].clothes.name, mainWarehouse).grosir_discount ,0.5) * shoppingCartItemTotalPrice(mainShoppingCart.contents[i]);
-		LtotPrice := LtotPrice + Lprice [i];
-	end;
-	writeln('Total Diskon Grosir = Rp ', LtotPrice:0:2);
-	dc := LtotPrice;
-end;
-
 procedure checkout(); //F12
 var
 	co,courChoice:Courier;
@@ -224,6 +212,35 @@ begin
 	end;
 end;
 
+procedure updateClothes(); //F13
+var
+	i:longint;
+begin
+	write('Updating Warehouse...');
+	for i:=1 to mainShoppingCart.size do
+	begin
+		warehouseRemoveStock(mainShoppingCart.contents[i], mainWarehouse);
+		warehouseUpdateSold(mainShoppingCart.contents[i], mainWarehouse);
+	end;
+	writeln('OK');
+end;
+
+procedure discountGrosir(var dc:real); //F14
+var
+	i : longint;
+	Lprice : array [1..100] of real;
+	Ltotprice : real;
+begin	
+	LtotPrice := 0;
+	for i := 1 to mainShoppingCart.size do
+	begin
+		Lprice[i] := min( (shoppingCartItemTotalQuantity(mainShoppingCart.contents[i]) div 10) * warehouseFindByName(mainShoppingCart.contents[i].clothes.name, mainWarehouse).grosir_discount ,0.5) * shoppingCartItemTotalPrice(mainShoppingCart.contents[i]);
+		LtotPrice := LtotPrice + Lprice [i];
+	end;
+	writeln('Total Diskon Grosir = Rp ', LtotPrice:0:2);
+	dc := LtotPrice;
+end;
+
 procedure showTransaction(); //F15
 begin
 	sortByDate(mainTransactionPool);
@@ -235,13 +252,21 @@ var
 	cl:Clothes;
 	co:Courier;
 	d,dNow:Date;
+	t:Transaction;
+	dc,courierFee:real;
 begin
 	readClothesByName(cl,mainWarehouse);
 	readCourier(co,d);
 	write('Tanggal hari ini  : ');readDate(dNow);
 	if (dateDifference(d,dNow)) then
 	begin
-		deleteTransaction(cl,co,d,mainTransactionPool);
+		deleteTransaction(cl,co,d,mainTransactionPool,t);
+		if (t.shopping_cart_item.clothes.name <> '#') then
+		begin
+			dc := min( (shoppingCartItemTotalQuantity(t.shopping_cart_item) div 10) * warehouseFindByName(t.shopping_cart_item.clothes.name, mainWarehouse).grosir_discount ,0.5) * shoppingCartItemTotalPrice(t.shopping_cart_item);
+			courierFee := courierFind(co,mainCourierPool).price_per_kg * shoppingCartItemTotalWeight(t.shopping_cart_item);
+			write('Jumlah Uang Dikembalikan : Rp '); writeln(courierFee + shoppingCartItemTotalPrice(t.shopping_cart_item) - dc:0:2);
+		end;
 	end
 	else
 	begin

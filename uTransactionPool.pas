@@ -16,7 +16,7 @@ interface
 	
 	procedure sortByDate(var tp : TransactionPool);
 	procedure addTransaction(sc:ShoppingCart; co:Courier; d:Date; var tp:TransactionPool);
-	procedure deleteTransaction(cl:Clothes; co:Courier; d:Date; var tp:TransactionPool);
+	procedure deleteTransaction(cl:Clothes; co:Courier; d:Date; var tp:TransactionPool; var t:Transaction);
 
 implementation
 	function transactionPoolCons(
@@ -74,12 +74,13 @@ implementation
 		end;
 	end;
 
-	procedure deleteTransaction(cl:Clothes; co:Courier; d:Date; var tp:TransactionPool);
+	procedure deleteTransaction(cl:Clothes; co:Courier; d:Date; var tp:TransactionPool; var t:Transaction);
 	var
 		foundAt,i:integer;
 		found:boolean;
 	begin
 		found := false;
+		t.shopping_cart_item.clothes.name := '#';
 		for i:=1 to tp.size do
 		begin
 			if 	(tp.contents[i].shopping_cart_item.clothes.name=cl.name) and
@@ -87,6 +88,7 @@ implementation
 				(dateIsEqual(tp.contents[i].delivery_date,d)) then
 			begin
 				foundAt:=i;
+				t := tp.contents[i];
 				found:=true;
 			end;
 		end;
