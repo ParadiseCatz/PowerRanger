@@ -9,22 +9,22 @@ var
 	mainWarehouse : Warehouse;
 	mainCourierPool : CourierPool;
 
-procedure loadAll(); forward; //F1
-procedure showPopulars(); forward; //F2
-procedure showDetailProduct(); forward; //F3
-procedure searchClothesByKeyword(); forward; //F4
-procedure sortPrice(); forward; //F5
-procedure filterClothes (); forward; //F6
-procedure filterByPrice(); forward; //F7
-procedure showExpedition(); forward; //F8
-procedure addToCart(); forward; //F9
-procedure removeFromCart(); forward; //F10
-procedure calculatePrice(); forward; //F11
-procedure checkout(); forward; //F12
-procedure updateClothes(); //F13
-procedure discountGrosir(var dc:real); forward; //F14
-procedure showTransaction(); forward; //F15
-procedure retur(); forward; //F16
+procedure loadAll() forward; //F1
+procedure showPopulars() forward; //F2
+procedure showDetailProduct() forward; //F3
+procedure searchClothesByKeyword() forward; //F4
+procedure sortPrice() forward; //F5
+procedure filterClothes () forward; //F6
+procedure filterByPrice() forward; //F7
+procedure showExpedition() forward; //F8
+procedure addToCart() forward; //F9
+procedure removeFromCart() forward; //F10
+procedure calculatePrice() forward; //F11
+procedure checkout() forward; //F12
+procedure updateClothes() forward; //F13
+procedure discountGrosir(var dc:real) forward; //F14
+procedure showTransaction() forward; //F15
+procedure retur() forward; //F16
 
 procedure loadAll(); //F1
 begin
