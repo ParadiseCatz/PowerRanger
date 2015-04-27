@@ -9,6 +9,7 @@ interface
 implementation
 
 	function getSimilarCommand(command:string):arString;
+	{getSimilarCommand adalah fungsi untuk mencari suatu string di command list yang mirip dengan input user}
 	var
 		i,size:longint;
 	begin
@@ -25,6 +26,7 @@ implementation
 	end;
 
 	function validCommand(command:string):boolean;
+	{validCommand adalah fungsi untuk memeriksa apakah command dari user valid}
 	var 
 		i : integer;
 		found : boolean;
@@ -59,6 +61,7 @@ implementation
 	end;
 
 	function validAmountFromWarehouse(sci:ShoppingCartItem; wi:WarehouseItem):boolean;
+	{validAmountFromWarehouse digunakan untuk memeriksa apakah jumlah pakaian yang ingin dibeli user masih tersedia di warehouse}
 	begin
 		validAmountFromWarehouse := (wi.s_stock >= sci.s_quantity) and (wi.m_stock >= sci.m_quantity) and (wi.l_stock >= sci.l_quantity) and (wi.xl_stock >= sci.xl_quantity);
 	end;

@@ -14,6 +14,7 @@ interface
 
 implementation
 	function stringToArray(s:ansistring):arString;
+	{stringToArray akan mengubah suatu string dengan format pada database menjadi array yang berisi string yang merupakan isi dari data tersebut}
 	var
 		i, posAkhir, indexArray:longint;
 		returnArray : arString;
@@ -34,6 +35,7 @@ implementation
 	end;
 
 	function stringToDate(s:ansistring):Date;
+	{stringToDate akan mengubah suatu string menjadi tipe bentukan Date (tanggal)}
 	var
 		i, posAkhir, indexArray:longint;
 		returnArray : array[0..50] of integer;
@@ -58,6 +60,7 @@ implementation
 	end;
 
 	function arrayToString(ar:arString;sz:integer):ansistring;
+	{arrayToString akan mengubah suatu array of string menjadi satu string untuk ditulis di database}
 	var
 		i:integer;
 		returnString:ansistring;
@@ -72,6 +75,7 @@ implementation
 	end;
 
 	function dateToString(d:date):ansistring;
+	{dateToString akan mengubah suatu tipe bentukan Date menjadi string dengan format day/month/year}
 	var day, month, year : string;
 	begin
 		str(d.day, day);
